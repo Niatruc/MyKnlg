@@ -22,23 +22,23 @@
 
     |名称|注释|音效|
     |-|-|-|
-    |clean fuzz|-|轻微哇音|
-    |hi sweety|-|清音|
-    |cat cat|-|尖锐的失真金属音|
-    |endless dream|-|尾音回声, 听起来空旷(山谷声)|
-    |step up 1|-|哇音, 左右声道摆动|
-    |funky baby|-|哇音|
-    |little jazz|Dv Mark little jazz爵士小音箱|清音|
-    |real jazz||清音; 低音浑厚|
-    |glory moment|-|星际穿越背景音效|
-    |lack of oxygen|-|每次拨动弦都能听到心跳声|
-    |where am i|-|颤音; 蚊子声; 搞怪风|
-    |80s disco|-|名副其实, 80年代舞厅音效|
-    |old times|-|接近80disco, 但失真更大|
-    |demo shimmer|-|也有星际穿越背景音效, 但没有湿音, 少了空旷的感觉|
-    |cold winter|-|柔化了拨弦的声音(几乎听不到了), 像是把所有声音糅到一起|
-    |broken dream|-|超级颤音, 声音剧烈抖动|
-    |talking bass|-|哇音(出现在拨弦音和弦的尾音中)|
+    |clean fuzz|(GP-200 01-C)|轻微哇音|
+    |hi sweety|(GP-200 01-D)|清音|
+    |cat cat|(GP-200 04-A)|尖锐的失真金属音|
+    |endless dream|(GP-200 07-D)|尾音回声, 听起来空旷(山谷声)|
+    |step up 1|(GP-200 09-C)|哇音, 左右声道摆动|
+    |funky baby|(GP-200 09-D)|哇音|
+    |little jazz|Dv Mark little jazz爵士小音箱(GP-200 12-D)|清音|
+    |glory moment|(GP-200 14-C) |星际穿越背景音效|
+    |lack of oxygen|(GP-200 14-D) |每次拨动弦都能听到心跳声|
+    |where am i|(GP-200 15-C)|颤音; 蚊子声; 搞怪风|
+    |80s disco|(GP-200 15-D)|名副其实, 80年代舞厅音效|
+    |real jazz|(GP-200 17-C)|清音; 低音浑厚|
+    |old times|(GP-200 18-B)|接近80disco, 但失真更大|
+    |demo shimmer|(GP-200 18-D) |也有星际穿越背景音效, 但没有湿音, 少了空旷的感觉|
+    |cold winter|(GP-200 20-C) |柔化了拨弦的声音(几乎听不到了), 像是把所有声音糅到一起|
+    |broken dream|(GP-200 22-A) |超级颤音, 声音剧烈抖动|
+    |talking bass|(GP-200 24-A) |哇音(出现在拨弦音和弦的尾音中)|
     |-|-|-|
 
 * 单块效果器
@@ -47,11 +47,26 @@
     |-|-|-|
     |失真器|Distortion|沙声器，使声音变沙哑|
     |过载器|over drive|产生管乐般失真效果，模拟管乐音色|
+    |合唱(和声器)|Chorus|使电吉他的声音左右游移回荡, 柔美宽广像混声大合唱的效果|
+    |移相器|Phaser|利用经过移相的声波与原声波之间互相干涉作用, 使声音产生颇震, 固族飘逸效果|
+    |弗兰格|Flanger|电路原理基本与合唱相同, 加了反馈电路. 与合唱不同的是声音具有旋转, 飘逸, 晚代感觉, 缓慢时如太空梦幻, 悠悠钟声|
+    |延时器|Delay|产生混响或回声|
     |-|-|-|
     |哇音器|WAH|-|
     |均衡器|Equalize|频率补偿器，|
-    |-|-|-|
-    |-|-|-|
+
+* GP-200接口
+    * EXP/FS: 1/4英寸trs接口, 连接外部踏板/脚踏开关. 
+    * INPUT: 1/4英寸mono接口, 连吉他或其他乐器. 
+    * AUX IN: 1/8英寸trs接口, 连音频播放(如MP3). 
+    * FX LOOP(SEND/RETURN): 1/4英寸接口. 位于前置放大器和功率放大器之间. 连接一个效果器. 信号从SEND口出来到效果器, 再从效果器出来经RETURN回到综合效果器. 
+    * 非均衡输出(L是Mono输出): 连音箱, FRFR扬声, 录音设备. 
+    * GND LIFT开关: 切换到GND(接地), 可切断两个XLR接口(卡侬接头)的接地连接. 
+        * https://www.bilibili.com/read/cv7594227
+        * 环地干扰噪声: 有多台接地功放设备时, 就可能形成环路, 会有噪声电压. 这时就需要断开接地端. 
+    * 均衡输出(L是Mono输出): 连studio gear, 混响器(mixer), PA(功放), FRFR扬声. 
+    * 耳机接口: 连耳机, 监听用. 
+    * USB(Type C): 可以连Mac或Windows电脑, GP-200可作为一个包含DI(直接输入), Re-amping, MIDI功能的高质量音频接口
 
 
 # 歌曲分析
