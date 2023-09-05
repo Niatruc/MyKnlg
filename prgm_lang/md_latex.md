@@ -3,31 +3,58 @@
 * 希腊字母
     |符号|代码|
     |-|-|
+    |A|\Alpha|
     |α|\alpha|
+    |B|\Beta|
     |β|\beta|
+    |Γ|\Gamma|
     |γ|\gamma|
+    |Δ|\Delta|
     |δ|\delta|
+    |E|\Epsilon|
     |ϵ|\epsilon|
     |ε|\varepsilon|
+    |Z|\Zeta|
     |ζ|\zeta|
+    |H|\Eta|
     |η|\eta|
+    |Θ|\Theta|
     |θ|\theta|
-    |λ|\lambda|
-    |μ|\mu|
-    |π|\pi|
-    |ξ|\xi|
-    |ρ|\rho|
-    |σ|\sigma|
-    |ω|\omega|
-    |υ|\upsilon|
-    |ϕ|\varphi|
-    |φ|\phi|
+    |Ι|\Iota|
+    |ι|\iota|
+    |K|\Kappa|
     |κ|\kappa|
+    |∧|\Lambda|
+    |λ|\lambda|
+    |M|\Mu|
+    |μ|\mu|
+    |N|\Nu|
     |ν|\nu|
-    |Δ|\Delta|
-    |Λ|\Lambda|
+    |Ξ|\Xi|
+    |ξ|\xi|
+    |Ο|\Omicron|
+    |o|\omicron|
+    |Π|\Pi|
+    |π|\pi|
+    |P|\Rho|
+    |ρ|\rho|
+    |Σ|\Sigma|
+    |σ|\sigma|
+    |ς|\varsigma|
+    |T|\Tau|
+    |τ|\tau|
+    |Υ|\Upsilon|
+    |υ|\upsilon|
     |Φ|\Phi|
-
+    |φ|\phi|
+    |ϕ|\varphi|
+    |Χ|\Chi|
+    |χ|\chi|
+    |Ψ|\Psi|
+    |ψ|\psi|
+    |Ω|\Omega|
+    |ω|\omega|
+    
 * 运算符
     |符号|代码|
     |-|-|
@@ -94,7 +121,11 @@
 * 上标
     * 向量: $\vec x, \overrightarrow{AB}$
     * 平均数(拔): $\bar x$
-    * 其它上标: $\hat{A}, \tilde{A}, \overline{A}$
+    * 帽: $\hat{A}$
+    * 颚化符号, 等价无穷小: $\tilde{A}$ 
+    * 一阶导数, 二阶导数: $\dot{A}, \ddot{A}$ 
+* 上划线: $\overline{A}$
+* 下划线: $\underline{a}$
 * 上下取: $\lceil, \rceil, \lfloor, \rfloor$
 * 矩阵: 
     
