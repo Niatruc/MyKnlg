@@ -24,6 +24,9 @@
 ## 包管理
 * bundle
     * Gemfile
+* gem
+    * 自制gem: 
+        * 参考: http://clongbupt.github.io/2015/03/30/cih93iu9t001ffnqkpf1uobf1/
 
 ## 全局变量和方法
 * `$LOAD_PATH`: `require`和`load`的搜索路径

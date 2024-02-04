@@ -23,6 +23,8 @@
         > Ten years ago, She began to live in Dalian. 从十年以前开始, 她开始住在了大连. 
 
 # 词汇
+* 连词
+    * lest: 以免
 * 动词
     * admire: 钦佩; 欣赏; 仰慕
     * anticipate: 预料
@@ -31,6 +33,7 @@
     * circumnavigate: 环绕航线
     * compensate: 补偿; 弥补
         * compensate for the loss of: 弥补xx损失
+    * crave: 渴求
     * detour: 绕过
     * disperse: 分散; 散布
         * adj. 分散的; 弥散的
@@ -45,6 +48,7 @@
     * evaporate: 蒸发; 消失
     * herald: 预示
         * herald a new era of peace
+    * humiliate: 羞辱
     * impede: 妨碍
         * impede the pursuit of truth
     * impersonate: 模仿; 冒充; 扮演
@@ -59,22 +63,27 @@
         * n. (船或飞机的)货单; 旅客名单
     * mediate: 调停; 斡旋
     * obstruct: 阻碍
+    * peddle: 兜售
     * pertain: 存在; 适用
     * propagate: 传播; 宣传; 增殖; 繁殖
     * prune: 剪枝
     * refrain: 避免; 抑制
         * n. 副歌; 迭句
+    * saute: 炒
+    * snigger: 窃笑
     * stall: 抛锚, 熄火; 暂缓
         * n: 货摊; 淋浴室
     * thwart: 阻挠; 挫败
 
 * 名词
     * accomplice: 共犯
+    * allegiance: 效忠
     * ambience: 气氛; 格调
     * analogue: 类似物; 类似情况; 对等的人
     * analogy: 比喻; 类比; 类推
         * make analogy between: 将...比喻为...
     * anarchy: 无政府状态; 混乱
+    * apprentice: 学徒; 徒弟
     * catharsis: 宣泄; 净化
     * contraption: 装置
     * descendant: 后裔
@@ -95,6 +104,7 @@
     * notch: 
         * n. 缺口; 等级; 档次;
         * v. 赢取; 刻下切口
+    * prophecy: 预言
     * pros and cons: 优点与缺点
     * realm: 领域
         * academic realm
@@ -102,6 +112,7 @@
     * sedative: 镇静剂
         * adj. 镇静的; 止痛的
     * substrate: 基底
+    * tyranny: 暴政
     * velocity: (沿着某一方向的)速度
     * vigilante: 义警
 
@@ -123,14 +134,19 @@
 
 * 形容词/副词
     * a wide gamut of: 大范围的(gamut: 全范围)
+    * arrogant: 傲慢的
+    * categorical: 绝对的
     * coherent: 连贯的; 合乎逻辑的; 清楚易懂的
     * comprise: 包括; 由...组成
+    * cynic: 愤世嫉俗的
     * delusional: 妄想的
+    * eloquent: 雄辩的
     * essentially: 本质上; 基本上
     * imperative: 迫切的; 紧急的; 命令的; 专横的
         * imperative sentence: 祈使句
         * imperative operation: 强制性操作
         * imperative stipulation: 强制规定
+    * grumpy: 易怒的
     * iridescent: 色彩斑斓闪耀的
     * mnemonic: 记忆的; 记忆术的
         * n. 助记符号
@@ -145,6 +161,9 @@
         * be prone to: 易于
     * proprietary: 专有的
         * n. 所有权; 所有物
+    * repellant: 令人反感的
+        * n. 驱虫剂; 防护剂
+    * repulsive: 令人厌恶的
     * shimmering: 闪烁的, 微微发亮的
     * synonymous: 同义的
     * synthetic: 合成的
@@ -152,6 +171,7 @@
 
 # 口语
 * kill it on ...: 在...方面做得非常好
+* a man of his word: 信守承诺的人
 
 # 学术论文词汇积累
 * 动词
@@ -182,6 +202,7 @@
         * erratically
     * homogeneous: 同种类的
     * monolithic: 庞大而单一的
+    * orthogonal: 正交的
     * perpetual: 持续的
     * preemptive: 先发制人的
         * preemptive scheduler function: 抢占式调度器
@@ -232,3 +253,6 @@
     * circumvent: 规避; 绕过
     * evade: 躲避
 
+## AI
+* 名词
+    * teleoperation: 遥操作的
