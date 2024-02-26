@@ -41,11 +41,14 @@
     * dub: 把...戏称为; 译制
         * dub into Chinese: 译制为中文
         * dub sth sth: 把...戏称为...
+    * elaborate: 精心制作; 详细描述
+        * adj. 复杂的; 详尽的; 精心制作的
     * enrol: 注册; 登记; 使加入
     * eradicate: 根除. 
+    * evaporate: 蒸发; 消失
     * exfiltrate: 漏出; 滤出; 渗漏
         * exfiltrate sensitive information from those networks: 从那些网络中窃取敏感信息
-    * evaporate: 蒸发; 消失
+    * expedite: 加快
     * herald: 预示
         * herald a new era of peace
     * humiliate: 羞辱
@@ -69,10 +72,12 @@
     * prune: 剪枝
     * refrain: 避免; 抑制
         * n. 副歌; 迭句
+    * resort: 求助; 诉诸
     * saute: 炒
     * snigger: 窃笑
     * stall: 抛锚, 熄火; 暂缓
         * n: 货摊; 淋浴室
+    * surmise: 推测
     * thwart: 阻挠; 挫败
 
 * 名词
@@ -84,6 +89,7 @@
         * make analogy between: 将...比喻为...
     * anarchy: 无政府状态; 混乱
     * apprentice: 学徒; 徒弟
+    * camouflage: 伪装
     * catharsis: 宣泄; 净化
     * contraption: 装置
     * descendant: 后裔
@@ -104,6 +110,9 @@
     * notch: 
         * n. 缺口; 等级; 档次;
         * v. 赢取; 刻下切口
+    * overhead: 开销
+    * paternity: 父亲的身份
+        * paternity leave: 陪产假
     * prophecy: 预言
     * pros and cons: 优点与缺点
     * realm: 领域
@@ -142,12 +151,15 @@
     * delusional: 妄想的
     * eloquent: 雄辩的
     * essentially: 本质上; 基本上
+    * grumpy: 易怒的
     * imperative: 迫切的; 紧急的; 命令的; 专横的
         * imperative sentence: 祈使句
         * imperative operation: 强制性操作
         * imperative stipulation: 强制规定
-    * grumpy: 易怒的
+    * intuitive: 直觉的; 易懂的
     * iridescent: 色彩斑斓闪耀的
+    * lethal: 致命的
+    * mandatory: 强制的; 法定的; 义务的
     * mnemonic: 记忆的; 记忆术的
         * n. 助记符号
         * mnemonic address: 助记地址
@@ -175,6 +187,10 @@
 
 # 学术论文词汇积累
 * 动词
+    * coalesce: 联合; 合并
+    * incur: 招致; 引起; 带来(开销等)
+        * incur 5 times overhead: 带来5倍多的开销
+        * incur a great danger to
     * strain: 耗尽
     * suffice: 足以
         * this suffices: 这就够了
@@ -239,10 +255,12 @@
         * authorizication: 授权
         * accounting: 计费
     * arbitrary code execution: 任意代码执行攻击
+    * brute-force: 穷举
     * data breach: 数据泄露 (breach(n/vt): 违背; 破坏; 中断; 突破口)
     * forensic: 取证
         * digital forensic: 数字取证
         * from a forensic standpoint: 从取证的角度来说
+    * instrumentation: 插桩
     * vulnerability: 漏洞
 * 形容词
     * compromised: 被攻陷的(系统)
