@@ -117,6 +117,7 @@
     * pros and cons: 优点与缺点
     * realm: 领域
         * academic realm
+    * scourge: 祸害; 天灾
     * sanitization: 消毒; 净化
     * sedative: 镇静剂
         * adj. 镇静的; 止痛的
@@ -187,10 +188,12 @@
 
 # 学术论文词汇积累
 * 动词
+    * calibrate: 标定; 校准
     * coalesce: 联合; 合并
     * incur: 招致; 引起; 带来(开销等)
         * incur 5 times overhead: 带来5倍多的开销
         * incur a great danger to
+    * saturate: 使饱和
     * strain: 耗尽
     * suffice: 足以
         * this suffices: 这就够了
@@ -225,7 +228,7 @@
         * non-preemptive multitasking
     * quantitative: 量化的
     * sheer volume of: 大量的(业务, 工作, 邮件等)
-    * sporadic: 偶尔发生的
+    * sporadic: 偶尔发生的; 零星的
     * substantial: 大量的
 
 
