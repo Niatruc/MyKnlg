@@ -169,6 +169,7 @@
         * mnemonic chant: 口诀
     * monetary: 货币的
     * negligible: 可以忽略不计的
+    * nominally: 名义上
     * obligatory(/əˈblɪɡətri/): 强制性的
     * prone: 有做...的倾向; 仰卧
         * be prone to: 易于
@@ -219,6 +220,7 @@
     * consecutive: 连续的
     * erratic: 不规则的
         * erratically
+    * finer-grained: 细粒度
     * homogeneous: 同种类的
     * monolithic: 庞大而单一的
     * orthogonal: 正交的
@@ -230,6 +232,7 @@
     * sheer volume of: 大量的(业务, 工作, 邮件等)
     * sporadic: 偶尔发生的; 零星的
     * substantial: 大量的
+    * synergistic: 协同作用的; 协作的
 
 
 # 专用
