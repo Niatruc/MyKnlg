@@ -33,6 +33,9 @@
                     * `python=<版本号>`
                 * `remove -n <虚拟环境名称>`: 
                 * `list`: 列出所有环境
+            * 离线创建环境
+                * 执行命令: `conda create -n [name] --clone [filepath] --offline`
+                    * 出错: `This command is using a remote connection in offline mode.`
 
 # 基本数据结构
 ## 字符串

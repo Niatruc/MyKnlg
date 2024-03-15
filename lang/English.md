@@ -147,9 +147,11 @@
     * arrogant: 傲慢的
     * categorical: 绝对的
     * coherent: 连贯的; 合乎逻辑的; 清楚易懂的
+    * comprehensively: 彻底地
     * comprise: 包括; 由...组成
     * cynic: 愤世嫉俗的
     * delusional: 妄想的
+    * effectively: 实际上
     * eloquent: 雄辩的
     * essentially: 本质上; 基本上
     * grumpy: 易怒的
@@ -181,7 +183,6 @@
     * shimmering: 闪烁的, 微微发亮的
     * synonymous: 同义的
     * synthetic: 合成的
-    * versatile: 多功能的; 多才多艺的
 
 # 口语
 * kill it on ...: 在...方面做得非常好
@@ -194,6 +195,7 @@
     * incur: 招致; 引起; 带来(开销等)
         * incur 5 times overhead: 带来5倍多的开销
         * incur a great danger to
+    * retrofit: 翻新
     * saturate: 使饱和
     * strain: 耗尽
     * suffice: 足以
@@ -216,30 +218,38 @@
     * terminology: 专业术语
         * for the sake of terminology, we call it ...
 
-* 形容词
+* 形容词/副词
     * consecutive: 连续的
     * erratic: 不规则的
         * erratically
     * finer-grained: 细粒度
     * homogeneous: 同种类的
+    * identical: 完全相同的
+        * be ~ to
+    * inherently: 固有的
     * monolithic: 庞大而单一的
     * orthogonal: 正交的
     * perpetual: 持续的
     * preemptive: 先发制人的
         * preemptive scheduler function: 抢占式调度器
         * non-preemptive multitasking
+    * prohibitively: 令人望而却步
+        * ~ high: 过高的
     * quantitative: 量化的
     * sheer volume of: 大量的(业务, 工作, 邮件等)
+    * sound: 合理的
+        * unsound
     * sporadic: 偶尔发生的; 零星的
     * substantial: 大量的
     * synergistic: 协同作用的; 协作的
-
+    * versatile: 多功能的; 多才多艺的
 
 # 专用
 ## 计算机
 * 动词
     * clobber: 修改, 重写 (内存或寄存器)
 * 名词
+    * Code Caves: 可执行代码洞, 即计算机程序或二进制文件中通常未使用或包含未使用指令的可执行代码区域. 
     * epilogue: 后序
     * function prelude: 同下
     * function prologue: 函数序言(函数开始时运行的一段指令)

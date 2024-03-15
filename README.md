@@ -1,2 +1,2 @@
 # MyKnlg
-my knowledge collection、
+My knowledge collection. 
