@@ -190,6 +190,10 @@
 
 # 学术论文词汇积累
 * 动词
+    * accommodate: 容纳
+    * ameliorate: 改善; 改良
+    * amortize: 分摊; 分期偿还
+        * the overhead is amortized: 开销被摊销了
     * calibrate: 标定; 校准
     * coalesce: 联合; 合并
     * incur: 招致; 引起; 带来(开销等)
@@ -215,6 +219,7 @@
     * quadrant: 象限
     * spectrum: 频谱; 范围; 
         * a wide spectrum of
+    * spillage: 溢出
     * terminology: 专业术语
         * for the sake of terminology, we call it ...
 
@@ -237,6 +242,7 @@
         * ~ high: 过高的
     * quantitative: 量化的
     * sheer volume of: 大量的(业务, 工作, 邮件等)
+    * simultaneously: 同时地
     * sound: 合理的
         * unsound
     * sporadic: 偶尔发生的; 零星的
