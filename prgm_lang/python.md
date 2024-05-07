@@ -18,8 +18,23 @@
             * 在扩展中找到`Python`, 点击`Uninstall`键右侧的下拉键, 点击`Install Another Version`, 选择`v2021.9.1246542782`(这个插件对Python2的支持到这个版本结束). 
         * `launch.json`: 
             * `args`: 值为列表, 列表中每一项对应一个命令行参数. 
-* jupyter
-    * 
+* jupyter(lab)
+    * 安装kernel: 在目标python环境中执行: 
+        * `pip install ipykernel`
+        * `python -m ipykernel install --user --name=<kernel名>`
+    * 卸载kernel: `jupyter kernelspec remove <kernel名>`
+    * 设置自动重载模块: 
+        > `%load_ext autoload`
+        > `%autoload 2`
+    * 快捷键
+        * `shift + tab`: 查看函数描述(参数, 所在文件等)
+    * 问题
+        * `IOPub data rate exceeded`
+            * `jupyter --config-dir`: 找到配置文件目录
+            * 编辑`jupyter_notebook_config.py`(没有则新建): 
+                * 添加: `c.NotebookApp.iopub_data_rate_limit = 10000000`(适当加大此值)
+* pip
+    * `install <模块> -i https://pypi.tuna.tsinghua.edu.cn/simple`
 * conda
     * 命令
         * `conda`
@@ -36,9 +51,18 @@
             * 离线创建环境
                 * 执行命令: `conda create -n [name] --clone [filepath] --offline`
                     * 出错: `This command is using a remote connection in offline mode.`
+    * 打包和迁移
+        * `pip install conda-pack`
+        * `conda pack -n my_env -o my_env.tar.gz`: 打包
+        * 在另一台机子上解压`my_env.tar.gz`, 运行`my_env/bin/activate`
+        * `conda-unpack`
 
 # 基本数据结构
 ## 字符串
+```py
+    r"D:\dir" # 反斜杠不转义
+```
+* `print("hello", end="")`: 不换行打印
 ## 列表
 ## 元组
 ## 字典
@@ -55,6 +79,11 @@
     * `locals()`: 获取局部命名空间中所有变量名. 
     * `globals()`: 获取全局命名空间中所有变量名. 
     * `reload(<mod>)`: 重新加载`mod`. 
+        ```py
+            import importlib
+
+            importlib.reload(m) # 重载模块m
+        ```
 * mixin: 通过类似C++的多继承的方式, 达到与ruby的模块相同的效果.
     ```py
         class MyMixin1: 

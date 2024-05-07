@@ -239,6 +239,7 @@
     |乐器数字接口|`MIDI`|musical instruments digital interface|
     |衰减时间调节(残响长度)|`decay`|-|
     |早期反射声|`predelay`|-|
+    |共鸣腔|`resonance chamber`|-|
     |-|-|-|
 
 ## 综合效果器
@@ -320,7 +321,9 @@
     * 按`+`慢速(1/2)播放. 
     * 长按`+`倒放. 
 
-## 
+## 雅马哈点大提琴
+* https://www.nt-instruments.com/cello/yamaha-electric/
+* http://www.yamahamusic.com.tw/instrument/winds&strings/silent-strings/silent%20cello-svc50.htm
 
 # 歌曲分析
 * `晴天`
