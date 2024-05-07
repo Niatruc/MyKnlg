@@ -145,6 +145,7 @@
 * 形容词/副词
     * a wide gamut of: 大范围的(gamut: 全范围)
     * arrogant: 傲慢的
+    * bizarre [bɪˈzɑː(r)]: 奇怪的
     * categorical: 绝对的
     * coherent: 连贯的; 合乎逻辑的; 清楚易懂的
     * comprehensively: 彻底地
@@ -175,6 +176,7 @@
     * obligatory(/əˈblɪɡətri/): 强制性的
     * prone: 有做...的倾向; 仰卧
         * be prone to: 易于
+    * proportional: 成比例的; 相称的; 均衡的
     * proprietary: 专有的
         * n. 所有权; 所有物
     * repellant: 令人反感的
@@ -190,6 +192,10 @@
 
 # 学术论文词汇积累
 * 动词
+    * accommodate: 容纳
+    * ameliorate: 改善; 改良
+    * amortize: 分摊; 分期偿还
+        * the overhead is amortized: 开销被摊销了
     * calibrate: 标定; 校准
     * coalesce: 联合; 合并
     * incur: 招致; 引起; 带来(开销等)
@@ -215,10 +221,14 @@
     * quadrant: 象限
     * spectrum: 频谱; 范围; 
         * a wide spectrum of
+    * spillage: 溢出
     * terminology: 专业术语
         * for the sake of terminology, we call it ...
 
 * 形容词/副词
+    * aggregate: 总计的
+        * v. 合计
+        * n. 总数
     * consecutive: 连续的
     * erratic: 不规则的
         * erratically
@@ -237,6 +247,7 @@
         * ~ high: 过高的
     * quantitative: 量化的
     * sheer volume of: 大量的(业务, 工作, 邮件等)
+    * simultaneously: 同时地
     * sound: 合理的
         * unsound
     * sporadic: 偶尔发生的; 零星的
