@@ -36,7 +36,9 @@
             * 离线创建环境
                 * 执行命令: `conda create -n [name] --clone [filepath] --offline`
                     * 出错: `This command is using a remote connection in offline mode.`
-
+    * mamba
+        * 安装: `conda install -c conda-forge`
+        * 创建空白环境: `mamba create -n <环境名>`
 # 基本数据结构
 ## 字符串
 ## 列表
@@ -130,9 +132,9 @@
             def my_dec(func): 
                 def inner(*args, **kwargs): 
                     '''执行函数前要做的'''
-                    re = func(*args, **kwargs)
+                    ret = func(*args, **kwargs)
                     '''执行函数后要做的'''
-                    return re
+                    return ret
                 return inner
         ```
     * 内置装饰器

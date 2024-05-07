@@ -145,6 +145,7 @@
 * 形容词/副词
     * a wide gamut of: 大范围的(gamut: 全范围)
     * arrogant: 傲慢的
+    * bizarre [bɪˈzɑː(r)]: 奇怪的
     * categorical: 绝对的
     * coherent: 连贯的; 合乎逻辑的; 清楚易懂的
     * comprehensively: 彻底地
@@ -175,6 +176,7 @@
     * obligatory(/əˈblɪɡətri/): 强制性的
     * prone: 有做...的倾向; 仰卧
         * be prone to: 易于
+    * proportional: 成比例的; 相称的; 均衡的
     * proprietary: 专有的
         * n. 所有权; 所有物
     * repellant: 令人反感的
@@ -224,6 +226,9 @@
         * for the sake of terminology, we call it ...
 
 * 形容词/副词
+    * aggregate: 总计的
+        * v. 合计
+        * n. 总数
     * consecutive: 连续的
     * erratic: 不规则的
         * erratically
