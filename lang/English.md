@@ -92,6 +92,7 @@
     * camouflage: 伪装
     * catharsis: 宣泄; 净化
     * contraption: 装置
+    * derivatives: 衍生物; 衍生词
     * descendant: 后裔
     * empathy: 共鸣
     * enforcement: 执行; 实施

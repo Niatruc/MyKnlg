@@ -18,6 +18,7 @@
             * 在扩展中找到`Python`, 点击`Uninstall`键右侧的下拉键, 点击`Install Another Version`, 选择`v2021.9.1246542782`(这个插件对Python2的支持到这个版本结束). 
         * `launch.json`: 
             * `args`: 值为列表, 列表中每一项对应一个命令行参数. 
+            * `justMyCode`: 将该值设为`false`, 这样调试的时候调用栈上方能显示第三方库的函数. 
 * jupyter(lab)
     * 安装kernel: 在目标python环境中执行: 
         * `pip install ipykernel`
@@ -166,6 +167,11 @@
                     '''执行函数后要做的'''
                     return ret
                 return inner
+
+            # 使用装饰器
+            @my_dec
+            def my_func(): 
+                pass
         ```
     * 内置装饰器
         * `@classmethod`: 指定类方法. 
@@ -178,10 +184,16 @@
                 class C: 
                     @property
                     def p1(self): 
-                        return 1
+                        return _p1
+
+                    @position.setter
+                    def p1(self, value):
+                        print("Set p1")
+                        self._p1 = value
                 
                 c = C()
                 print(c.p1)
+                c.p1 = 1
             ```
     * 类装饰器: 区别于函数装饰器, 参数是类. 
         ```py
