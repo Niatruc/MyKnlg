@@ -107,6 +107,15 @@
         c.p1
         MyClass.__mro__ # 祖先链
     ```
+* `method missing` 处理: 定义`__getattribute__`方法. 
+    ```py
+        def __getattribute__(self, name):
+            def _missing(*args, **kwargs):
+                print "A missing method was called."
+                print "The object was %r, the method was %r. " % (self, name)
+                print "It was called with %r and %r as arguments" % (args, kwargs)
+            return _missing
+    ```
 * 元类
     * 元类是制造类的工厂. 
     * 可修改类内部(类属性, 类方法). 
