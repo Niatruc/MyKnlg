@@ -73,6 +73,18 @@
 
 # 函数
 
+# 异常处理
+```py
+    import traceback
+    try:
+        ...
+    except Exception as e:
+        traceback.print_exc()
+        tb = traceback.TracebackException.from_exception(e, capture_locals=True) # 打印参数值
+    else: 
+        pass
+```
+
 # 面向对象
 * `super`: 在子类的函数中, 调用父类方法(如, `f1`), 需要这么写: `super().f1()`
     
@@ -88,6 +100,13 @@
 
             importlib.reload(m) # 重载模块m
         ```
+* 函数最为对象
+    ```py
+        def f():
+            pass
+
+        f.__name__ # "f"
+    ```
 * mixin: 通过类似C++的多继承的方式, 达到与ruby的模块相同的效果.
     ```py
         class MyMixin1: 
