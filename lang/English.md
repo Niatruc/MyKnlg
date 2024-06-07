@@ -49,6 +49,7 @@
     * exfiltrate: 漏出; 滤出; 渗漏
         * exfiltrate sensitive information from those networks: 从那些网络中窃取敏感信息
     * expedite: 加快
+    * hamper: 阻碍
     * herald: 预示
         * herald a new era of peace
     * humiliate: 羞辱
@@ -91,6 +92,7 @@
     * apprentice: 学徒; 徒弟
     * camouflage: 伪装
     * catharsis: 宣泄; 净化
+    * caveat: 警告, 告诫
     * contraption: 装置
     * derivatives: 衍生物; 衍生词
     * descendant: 后裔
