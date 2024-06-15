@@ -43,20 +43,19 @@
                 * `--add`
                     * `envs_dirs <路径>`: 添加环境路径. 以后创建和搜索虚拟环境时, 会现在该路径下执行操作. 
             * `env`: 
-                * `create`: 
-                    * `--name <虚拟环境名称>`: 
-                    * `--prefix <虚拟环境完整路径>`: 如果不想装在默认的`.conda`目录, 则不要用`--name`选项, 而是用这个. 
-                    * `python=<版本号>`
-                * `remove -n <虚拟环境名称>`: 
                 * `list`: 列出所有环境
+            * `create`: 
+                * `--name <虚拟环境名称>`: 
+                * `--prefix <虚拟环境完整路径>`: 如果不想装在默认的`.conda`目录, 则不要用`--name`选项, 而是用这个. 
+                * `python=<版本号>`
+            * `remove -n <虚拟环境名称>`: 
             * 离线创建环境
                 * 执行命令: `conda create -n [name] --clone [filepath] --offline`
                     * 出错: `This command is using a remote connection in offline mode.`
     * 打包和迁移
         * `pip install conda-pack`
         * `conda pack -n my_env -o my_env.tar.gz`: 打包
-        * 在另一台机子上解压`my_env.tar.gz`, 运行`my_env/bin/activate`
-        * `conda-unpack`
+        * 在另一台机子上解压`my_env.tar.gz`, 将目录拷贝到`miniconda3/envs`目录下. 
 
     * mamba
         * 安装: `conda install -c conda-forge`
@@ -86,26 +85,62 @@
 ```
 
 # 面向对象
+* 
+    ```py
+        class Student:
+            __slots__ = ('name', 'age') # 限制对象属性
+    ```
 * `super`: 在子类的函数中, 调用父类方法(如, `f1`), 需要这么写: `super().f1()`
-    
 
 
 # 元编程
-* 接口
+* 命名空间
     * `locals()`: 获取局部命名空间中所有变量名. 
     * `globals()`: 获取全局命名空间中所有变量名. 
     * `reload(<mod>)`: 重新加载`mod`. 
         ```py
-            import importlib
+            import importlib, os
+            os.sys.path.append("<custom_mod.py文件所在路径>")
+            cm = importlib.import_module("custom_mod")
+            importlib.reload(cm) # 重载模块m
 
-            importlib.reload(m) # 重载模块m
+            # 另一种使用模块绝对路径的方法
+            import importlib.util
+            import sys
+            spec = importlib.util.spec_from_file_location("module.name", "/path/to/file.py")
+            foo = importlib.util.module_from_spec(spec)
+            sys.modules["module.name"] = foo
+            spec.loader.exec_module(foo)
+            foo.MyClass()
         ```
-* 函数最为对象
+    * 定义一个无文件的模块: 
+        ```py
+            import types
+
+            # 创建module对象
+            mymodule = types.ModuleType('mymodule', 'This is a custom module')
+            mymodule.my_variable = 42
+
+            def greet(name):
+                return f"Hello, {name}!"
+            mymodule.greet = greet
+        ```
+* 函数作为对象: 
     ```py
-        def f():
-            pass
+        import inspect
+
+        def f(a, b):
+            function_object = globals()["f"] # 获取函数对象
+            f.attr1 = "123"
+            current_function = inspect.currentframe().f_code.co_name # 获取函数名
 
         f.__name__ # "f"
+        f.__code__ # 函数的code对象
+
+        from inspect import signature, Parameter
+        param_list = tuple(signature(f).parameters.values())
+
+        param_list[0].name # 'a'
     ```
 * mixin: 通过类似C++的多继承的方式, 达到与ruby的模块相同的效果.
     ```py
@@ -201,6 +236,21 @@
             def my_func(): 
                 pass
         ```
+    * 装饰器参数
+        ```py
+            import inspect
+
+            def hooker(target_func: str):
+                def decorator(hook_func: function):
+                    hook_func.target_func = target_func
+                    return hook_func
+                return decorator
+            
+            @hooker("f1") # 返回一个装饰器
+            def hook_f1():
+                function_object = globals()["hook_f1"]
+                print(function_object.target_func)
+        ```
     * 内置装饰器
         * `@classmethod`: 指定类方法. 
             * 被它修饰的方法都有一个`cls`参数, 指向本类. 
@@ -222,6 +272,22 @@
                 c = C()
                 print(c.p1)
                 c.p1 = 1
+            ```
+        * `@wraps`: 说是可以避免下面`example.__name__`返回"wrapper", `example.__doc__`返回"decorator"
+            ```py
+                from functools import wraps
+                def my_decorator(func):
+                    def wrapper(*args, **kwargs):
+                        '''decorator'''
+                        print('Calling decorated function...')
+                        return func(*args, **kwargs)
+                    return func
+
+                @my_decorator 
+                def example():
+                    """Docstring""" 
+                    print('Called example function')
+                print(example.__name__, example.__doc__)
             ```
     * 类装饰器: 区别于函数装饰器, 参数是类. 
         ```py

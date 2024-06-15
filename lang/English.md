@@ -34,6 +34,7 @@
     * compensate: 补偿; 弥补
         * compensate for the loss of: 弥补xx损失
     * crave: 渴求
+        * ~ attention: 渴望关心
     * detour: 绕过
     * disperse: 分散; 散布
         * adj. 分散的; 弥散的
