@@ -67,6 +67,12 @@
 ```
 * `print("hello", end="")`: 不换行打印
 ## 列表
+```py
+    a1 = [1, 2, 3]
+    a2 = [4, 5, 6]
+
+    a1.extend(a2) # 合并列表
+```
 ## 元组
 ## 字典
 
@@ -94,37 +100,6 @@
 
 
 # 元编程
-* 命名空间
-    * `locals()`: 获取局部命名空间中所有变量名. 
-    * `globals()`: 获取全局命名空间中所有变量名. 
-    * `reload(<mod>)`: 重新加载`mod`. 
-        ```py
-            import importlib, os
-            os.sys.path.append("<custom_mod.py文件所在路径>")
-            cm = importlib.import_module("custom_mod")
-            importlib.reload(cm) # 重载模块m
-
-            # 另一种使用模块绝对路径的方法
-            import importlib.util
-            import sys
-            spec = importlib.util.spec_from_file_location("module.name", "/path/to/file.py")
-            foo = importlib.util.module_from_spec(spec)
-            sys.modules["module.name"] = foo
-            spec.loader.exec_module(foo)
-            foo.MyClass()
-        ```
-    * 定义一个无文件的模块: 
-        ```py
-            import types
-
-            # 创建module对象
-            mymodule = types.ModuleType('mymodule', 'This is a custom module')
-            mymodule.my_variable = 42
-
-            def greet(name):
-                return f"Hello, {name}!"
-            mymodule.greet = greet
-        ```
 * 函数作为对象: 
     ```py
         import inspect
@@ -138,11 +113,24 @@
         f.__code__ # 函数的code对象
 
         from inspect import signature, Parameter
-        param_list = tuple(signature(f).parameters.values())
+        param_list = list(signature(f).parameters.values()) # 获取参数列表
 
         param_list[0].name # 'a'
+
+        # 修改函数的参数列表
+        param_list.insert(0, inspect.Parameter("new_a1", inspect.Parameter.POSITIONAL_ONLY))
+        new_signature = inspect.Signature(parameters=param_list)
+        f.__signature__ = new_signature
+
+        # 注:
+        # def func(positional_args, keyword_args, *tuple_grp_args, **dict_kw_args):
+        # 如上所示, 一个函数的参数类型分别是: 
+        #   positional_args: 位置参数(POSITIONAL_ONLY)
+        #   keyword_args: 关键字参数(KEYWORD_ONLY)
+        #   tuple_grp_args: 可变位置参数(VAR_POSITIONAL)
+        #   dict_kw_args: 可变关键字参数(VAR_KEYWORD)
     ```
-* mixin: 通过类似C++的多继承的方式, 达到与ruby的模块相同的效果.
+* `mixin`: 通过类似C++的多继承的方式, 达到与ruby的模块相同的效果.
     ```py
         class MyMixin1: 
             G1 = 1 # 类变量
@@ -228,8 +216,8 @@
                     '''执行函数前要做的'''
                     ret = func(*args, **kwargs)
                     '''执行函数后要做的'''
-                    return ret
-                return inner
+                    return ret # 返回的是函数的执行结果
+                return inner # 装饰器本身则返回函数对象(其会取代原先的被装饰函数)
 
             # 使用装饰器
             @my_dec
@@ -243,7 +231,7 @@
             def hooker(target_func: str):
                 def decorator(hook_func: function):
                     hook_func.target_func = target_func
-                    return hook_func
+                    return hook_func # 装饰器返回函数对象
                 return decorator
             
             @hooker("f1") # 返回一个装饰器
@@ -306,37 +294,78 @@
         * 闭包(E): 
             * `<func>.__closure__`
             * `<func>.__closure__[0].cell_contents`
+            * 捕获局部变量: 
+                ```py
+                    from functools import partial
+
+                    num_list = [1, 2, 3]
+                    func_list = []
+                    for i in num_list: 
+                        a = i
+                        # func_list.append(lambda: print(a)) # 这样会导致所有lambda用的都是最新的a, 也就是3
+                        func_list.append(partial(func_list, a)) # 这样可以捕获变量a的值
+                    func_list[0]()
+                ```
         * 全局(G): `globals()`
         * 内置(B): `dir(__builtins__)`
-    * 示例
-        ```py
-        l1 = 1
-        def f():
-            global l1 # 必须有这个声明, 否则报错: local variable 'l1' referenced before assignment
-            l1 += 1
-            l2 = 2
-            def g():
-                nonlocal l2 # 必须有这个声明, 否则报错: local variable 'l1' referenced before assignment
-                l2 += 1
-                return l2
-            return g
-        
-        g = f()
+        * 示例
+            ```py
+                l1 = 1
+                def f():
+                    global l1 # 必须有这个声明, 否则报错: local variable 'l1' referenced before assignment
+                    l1 += 1
+                    l2 = 2
+                    def g():
+                        nonlocal l2 # 必须有这个声明, 否则报错: local variable 'l1' referenced before assignment
+                        l2 += 1
+                        return l2
+                    return g
+                
+                g = f()
 
-        # 获取闭包更详细的信息
-        import inspect
-        inspect.getclosurevars(g)
+                # 获取闭包更详细的信息
+                import inspect
+                inspect.getclosurevars(g)
+            ```
+    * `reload(<mod>)`: 重新加载`mod`. 
+        ```py
+            import importlib, os
+            os.sys.path.append("<custom_mod.py文件所在路径>")
+            cm = importlib.import_module("custom_mod")
+            importlib.reload(cm) # 重载模块m
+
+            # 另一种使用模块绝对路径的方法
+            import importlib.util
+            import sys
+            spec = importlib.util.spec_from_file_location("module.name", "/path/to/file.py")
+            foo = importlib.util.module_from_spec(spec)
+            sys.modules["module.name"] = foo
+            spec.loader.exec_module(foo)
+            foo.MyClass()
         ```
+    * 定义一个无文件的模块: 
+        ```py
+            import types
+
+            # 创建module对象
+            mymodule = types.ModuleType('mymodule', 'This is a custom module')
+            mymodule.my_variable = 42
+
+            def greet(name):
+                return f"Hello, {name}!"
+            mymodule.greet = greet
+        ```
+
 * 生成器
     ```py
-    def f():
-        a = 1
-        while 1:
-            res = yield a
-            a += 1
-    
-    g = f() # g是一个生成器. 
-    next(g) # 调用生成器. 返回值为yield后的值
+        def f():
+            a = 1
+            while 1:
+                res = yield a
+                a += 1
+        
+        g = f() # g是一个生成器. 
+        next(g) # 调用生成器. 返回值为yield后的值
     ```
 
     * `f()`不会实际运行`f`的函数体
@@ -907,9 +936,12 @@
 ```
 
 # PyQt5
-* ui文件转py文件
-    * `python -m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py`
-* 发布: `pyinstaller -F my_gui.py`
+* 安装: 用pip安装`PyQt5`和`qt5-tools`. 目前只支持到`python 3.9`(20240619)
+* 工具: 
+    * designer: 运行`qt5-tools designer`
+    * ui文件转py文件
+        * `python -m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py`
+    * 发布: `pyinstaller -F my_gui.py`
 * 主程序
     ```py
         from PyQt5 import QtWidgets, uic
@@ -921,7 +953,7 @@
         class MyApp(QMainWindow, Ui_MainWindow): # 方法1, 继承Ui_MainWindow(使用pyuic转换ui文件生成的py文件中的类), 然后setupUI
             def __init__(self):
                 super().__init__()
-                self.setupUI(self)
+                self.setupUi(self)
 
                 # uic.loadUi('maindlg.ui', self) # 方法2, 直接载入ui文件
         

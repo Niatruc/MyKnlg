@@ -64,7 +64,13 @@
 
         using M # 将M引入当前作用域
     ```
+* 方法对象
+    ```rb
+        def foo(x, y)
+        end
 
+        method(:foo).parameters # 获取方法的参数列表, 形如`[[:req, :x], [:req, :y]]`
+    ```
 * 动态方法: 
     * 动态调用方法: `myObj.send(:method1, arg1)`
     * 动态定义方法: 

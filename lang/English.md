@@ -50,6 +50,8 @@
     * exfiltrate: 漏出; 滤出; 渗漏
         * exfiltrate sensitive information from those networks: 从那些网络中窃取敏感信息
     * expedite: 加快
+    * expense: 
+        * at the expense of: 以...为代价
     * hamper: 阻碍
     * herald: 预示
         * herald a new era of peace
@@ -159,11 +161,13 @@
     * effectively: 实际上
     * eloquent: 雄辩的
     * essentially: 本质上; 基本上
+    * flaky: 易剥落的; <美俚>极古怪的
     * grumpy: 易怒的
     * imperative: 迫切的; 紧急的; 命令的; 专横的
         * imperative sentence: 祈使句
         * imperative operation: 强制性操作
         * imperative stipulation: 强制规定
+    * intermittent: 断断续续的
     * intuitive: 直觉的; 易懂的
     * iridescent: 色彩斑斓闪耀的
     * lethal: 致命的
