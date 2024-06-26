@@ -64,8 +64,18 @@
 ## 字符串
 ```py
     r"D:\dir" # 反斜杠不转义
+
+    # 多行字符串
+    s = """
+        def f():
+            print("123")
+    """
+
+    import textwrap
+    s = textwrap.dedent(s) # 去掉多余缩进(去除的缩进数量按缩进最少的那行算, 比如这里就是`def f():`行)
 ```
 * `print("hello", end="")`: 不换行打印
+* 
 ## 列表
 ```py
     a1 = [1, 2, 3]
@@ -75,6 +85,18 @@
 ```
 ## 元组
 ## 字典
+```py
+    d = {}
+    
+    # 与json互转
+    import json
+    j = json.dumps(d)
+    d1 = json.loads(j)
+
+    # 遍历
+    for (key, value) in d.items():
+        print ('key: ', key, 'value: ', value)
+```
 
 # 函数
 
@@ -935,10 +957,16 @@
     session.close()
 ```
 
+## fastapi
+* 问题
+    * 
+        * 参考: [解决fastapi访问/docs和/redoc接口文档显示空白或无法加载](https://blog.csdn.net/weixin_43936332/article/details/131020726)
 # PyQt5
 * 安装: 用pip安装`PyQt5`和`qt5-tools`. 目前只支持到`python 3.9`(20240619)
 * 工具: 
     * designer: 运行`qt5-tools designer`
+        * 编辑信号槽: 参考[Qt Designer: how to add custom slot and code to a button](https://stackoverflow.com/questions/7964869/qt-designer-how-to-add-custom-slot-and-code-to-a-button)
+        * 控件提升: 参考 [自定义控件与提升控件](https://blog.csdn.net/yuanzhapi2090/article/details/130205399)
     * ui文件转py文件
         * `python -m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py`
     * 发布: `pyinstaller -F my_gui.py`
@@ -950,10 +978,13 @@
         from my_gui import Ui_MainWindow
 
 
-        class MyApp(QMainWindow, Ui_MainWindow): # 方法1, 继承Ui_MainWindow(使用pyuic转换ui文件生成的py文件中的类), 然后setupUI
+        class MyApp(QMainWindow): 
             def __init__(self):
                 super().__init__()
-                self.setupUi(self)
+
+                # 方法1, 创建Ui_MainWindow对象(Ui_MainWindow是使用pyuic转换ui文件生成的py文件中的类), 然后调用其setupUI方法, 传入本类的实例(即self)作为参数
+                self.ui = Ui_MainWindow()
+                self.ui.setupUi(self)
 
                 # uic.loadUi('maindlg.ui', self) # 方法2, 直接载入ui文件
         
