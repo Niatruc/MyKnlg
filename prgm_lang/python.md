@@ -73,15 +73,22 @@
 
     import textwrap
     s = textwrap.dedent(s) # 去掉多余缩进(去除的缩进数量按缩进最少的那行算, 比如这里就是`def f():`行)
+
+    # 用`repr`可以将对象转换成字符串
+    print(repr("hello")) # => 'hello', 会带上引号
 ```
 * `print("hello", end="")`: 不换行打印
-* 
+
 ## 列表
 ```py
     a1 = [1, 2, 3]
     a2 = [4, 5, 6]
 
     a1.extend(a2) # 合并列表
+
+    list(set(a1).intersection(set(a2))) # 交集
+    list(set(a1).union(set(a2))) # 并集
+    list(set(a1).difference(set(a2))) # 差集
 ```
 ## 元组
 ## 字典
@@ -99,6 +106,7 @@
 ```
 
 # 函数
+# 模块
 
 # 异常处理
 ```py

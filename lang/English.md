@@ -187,6 +187,7 @@
     * proportional: 成比例的; 相称的; 均衡的
     * proprietary: 专有的
         * n. 所有权; 所有物
+    * prudent: 谨慎的; 精明的; 善于运营的
     * repellant: 令人反感的
         * n. 驱虫剂; 防护剂
     * repulsive: 令人厌恶的
@@ -223,15 +224,18 @@
         * (adj): 刺激性的
     * integrity: 完整性
     * parliament: 议会
+    * postmortem analysis: 事后分析
+    * precedence: 优先
+        * sth take ~: 某物占优先权; 优先使用某物
     * prerequisite: 先决条件
         * integrity check
-    * postmortem analysis: 事后分析
     * quadrant: 象限
     * spectrum: 频谱; 范围; 
         * a wide spectrum of
     * spillage: 溢出
     * terminology: 专业术语
         * for the sake of terminology, we call it ...
+    * throughput: 吞吐量
 
 * 形容词/副词
     * aggregate: 总计的
