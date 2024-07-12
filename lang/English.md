@@ -273,6 +273,8 @@
     * clobber: 修改, 重写 (内存或寄存器)
 * 名词
     * Code Caves: 可执行代码洞, 即计算机程序或二进制文件中通常未使用或包含未使用指令的可执行代码区域. 
+    * commodity hardware: 商用硬件
+        * 与之对应的是: custom hardware, proprietary hardware (专用硬件), bespoke hardware (订制硬件)
     * epilogue: 后序
     * function prelude: 同下
     * function prologue: 函数序言(函数开始时运行的一段指令)

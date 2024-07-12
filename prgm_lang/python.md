@@ -76,6 +76,11 @@
 
     # 用`repr`可以将对象转换成字符串
     print(repr("hello")) # => 'hello', 会带上引号
+
+    
+    info = 'abca'
+    info.find("a") # 搜索子串第一次出现的位置, 未找到则返回-1
+    info.index("a") # 同上, 但未找到时抛出异常
 ```
 * `print("hello", end="")`: 不换行打印
 
@@ -115,6 +120,7 @@
         ...
     except Exception as e:
         traceback.print_exc()
+        print(traceback.format_exc()) # 与上同
         tb = traceback.TracebackException.from_exception(e, capture_locals=True) # 打印参数值
     else: 
         pass
@@ -404,6 +410,33 @@
 # 基本用法
 ## 文件
 
+### 管道文件
+```py
+    import os
+    tmp_pipe_path = "/tmp/tmp_pipe_" + str(time.time())
+
+    os.mkfifo(tmp_pipe_path)  # 新建管道文件
+
+    tmp_pipe_r = os.open(tmp_pipe_path, os.O_RDONLY|os.O_NONBLOCK) 
+    tmp_pipe_w = os.open(tmp_pipe_path, os.O_WRONLY|os.O_NONBLOCK) # 必须先执行上一步打开读管道, 否则会报错提示`No such device or address`
+
+    os.write(tmp_pipe_w, b"hello") # 向管道写入数据
+    os.read(tmp_pipe_r, 100) # 从管道读取最大100个字节数据
+
+    ####################################################
+    # 方法2: 
+    ####################################################
+    r, w = os.pipe()	# 创建管道
+    # 然后也是调用`os.write`和`os.read`
+
+    ####################################################
+    # 方法3: 
+    ####################################################
+    from multiprocessing import Pipe
+    r, w = Pipe()
+    w.send("adsfasdf")
+    r.recv()
+```
 
 # 常用模块
 * 参考: 
