@@ -60,6 +60,70 @@
     * mamba
         * 安装: `conda install -c conda-forge`
         * 创建空白环境: `mamba create -n <环境名>`
+
+# 打包
+* 参考
+    * [如何一键保护你的 Python 代码？](https://blog.csdn.net/dsuiofh/article/details/137555769)
+* pyinstaller
+    * 要点
+        * 会先在当前目录(或`--specpath`指定的目录)生成一个`.spec`文件, 一个`build`目录和一个`dist`目录(存放最终的可执行文件). 
+        * 可用`pyi-makespec`仅生成`.spec`文件. 
+    * 基本用法
+        ```sh
+            # 参考: https://pyinstaller.org/en/stable/usage.html
+
+            pyinstaller
+                -F # 表示生成单个可执行文件
+                -D # 表示打包成目录. (会生成一个main程序和一个_internal目录, 后者存放依赖文件)
+                -n <名称> # 指定spec文件和打包程序的名称
+                -p <目录> # 指定import时查找的目录(类似于PYTHONPATH)
+                --workpath <目录> # 指定临时文件存放目录(默认是`./build`)
+                --distpath <目录> # 指定打包程序存放目录(默认是`./dist`)
+                --hidden-import <模块名> # hiddenimport是指那些不是通过import导入模块的操作(比如)
+                --runtime-tmpdir <目录> # 配合`-F`使用, 指定运行时解压依赖文件的临时路径. 若未指定, 则为`/tmp/_MEI*`
+                -s # 去除符号表
+                main.py # 目标文件
+
+            # 也可以直接使用生成的spec文件: 
+            pyinstaller main.spec
+        ```
+    * 问题
+        * 打包后的程序的运行问题: 
+            * `ModuleNotFoundError: No module named xxx`
+                * 分析: 无法导入工程中其他模块
+                * 解决方法: 加选项`--path .`, 将当前目录(即工程目录)指定为import的查找目录. 
+            * `fail to load the dynamic library`
+                * 原因: 有些模块会加载动态库
+                * 解决方法(以`unicorn`等为例): 
+                    * 方法一: 加选项`--collect-all unicorn`
+                    * 方法二: 可以修改spec文件: 
+                        ```py
+                            from PyInstaller.utils.hooks import collect_dynamic_libs # 导入这个函数
+
+                            a = Analysis(
+                                ...,
+                                binaries= # 效果等同于`--collect-binaries`
+                                    collect_dynamic_libs("unicorn") + \
+                                    collect_dynamic_libs("unicornafl") + \
+                                    collect_dynamic_libs("capstone") + \
+                                    collect_dynamic_libs("keystone"),
+                                hiddenimports=["unicorn", "unicornafl", "capstone", "keystone"],
+                                ...,
+                            )
+
+                        ```
+            * `configparser.NoSectionError: No section:`
+                * 分析
+                    * 程序导入了qiling模块
+                    * 初始化时, 使用了`utils.py:profile_setup`函数, 其中有一行`qiling_home = Path(inspect.getfile(inspect.currentframe())).parent`
+                    * 调试发现打包程序运行`inspect.getfile(inspect.currentframe())`返回的是`qiling/utils`(在没打包时, 获取的是绝对路径); `qiling_home`值为`qiling`
+                    * `ConfigParser`实例使用上面计算得到的路径去读取`qiling/profiles/linux.ql`文件, 找不到. 
+                * 解决方法
+                    * 方法一: 
+                        1. 改用`-D`选项, 打包生成目录. 
+                        2. 在打包后的程序运行前, 在它的工作目录下创建软链接指向`qiling`目录. 
+                    * 方法二:
+                        * 修改python程序, 使用`sys._MEIPASS`获取解压生成的临时目录, 然后同上所述建立软链接. 
 # 基本数据结构
 ## 字符串
 ```py
@@ -77,10 +141,19 @@
     # 用`repr`可以将对象转换成字符串
     print(repr("hello")) # => 'hello', 会带上引号
 
-    
+    # 将命令行参数字符串转成参数列表
+    import shlex
+    command_line = 'ls -l "file with spaces.txt"  ./some/directory'
+    arguments = shlex.split(command_line)
+
     info = 'abca'
     info.find("a") # 搜索子串第一次出现的位置, 未找到则返回-1
     info.index("a") # 同上, 但未找到时抛出异常
+
+    str(b'hello', 'utf-8') # 字节串转字符串
+    b'hello'.decode('utf-8') # 字节串转字符串
+    bytes('hello', 'utf-8') # 字符串转字节串
+    'hello'.encode('utf-8') # 字符串转字节串
 ```
 * `print("hello", end="")`: 不换行打印
 
@@ -99,6 +172,8 @@
 ## 字典
 ```py
     d = {}
+
+    del d['a'] # 删除键'a'
     
     # 与json互转
     import json
@@ -230,13 +305,14 @@
         class C(object):
             num = 0
         
-        # 动态修改对象中的方法: 
+        # 动态修改对象中的方法(猴子补丁): 
         import types
         def f(self):
             return self.a
         
         c = C()
         c.f1 = types.MethodType(f, c) # 将上面的f方法作为c对象的f1方法
+        setattr(c, "f1", types.MethodType(f, c)) # 也可以这么写, 更灵活
 
         # 动态访问属性
         hasattr(obj, "k1")
@@ -461,6 +537,7 @@
     os.chmod(file) # 修改文件权限
     os.utime(file) # 修改文件时间戳
     os.name(file) # 获取操作系统标识
+    os.symlink(source, link_name) # 创建软链接. 注意`source`才是目标文件
     os.system() # 执行操作系统命令
     os.execvp() # 启动一个新进程
     os.fork() # 获取父进程ID, 在子进程返回中返回0
@@ -703,7 +780,10 @@
     * [] 是定义匹配的字符范围。比如 [a-zA-Z0-9] 表示相应位置的字符要匹配英文字符和数字。[\s*]表示空格或者*号。
 
 ```py
-    re.match(pattern, string, flags=0) # 从字符串的起始位置匹配, 如果起始位置匹配不成功的话, match()就返回none
+    m = re.match(pattern, string, flags=0) # 从字符串的起始位置匹配, 如果起始位置匹配不成功的话, match()就返回none
+    m.group(0) # 获取匹配的字符串
+    m.group(1) # 获取捕获的第一个分组
+
     re.search(pattern, string, flags=0) # 扫描整个字符串并返回第一个成功的匹配
     re.findall(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个列表返回
     re.finditer(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个迭代器返回
