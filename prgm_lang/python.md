@@ -162,11 +162,15 @@
     a1 = [1, 2, 3]
     a2 = [4, 5, 6]
 
+    a1 = ["%02x" % x for x in a1] # 列表推导式
+    list(map(lambda x: "%02x" % x, a1)) # 对列表的每个元素应用函数, 生成新列表
+    
     a1.extend(a2) # 合并列表
 
     list(set(a1).intersection(set(a2))) # 交集
     list(set(a1).union(set(a2))) # 并集
     list(set(a1).difference(set(a2))) # 差集
+
 ```
 ## 元组
 ## 字典
@@ -179,6 +183,14 @@
     import json
     j = json.dumps(d)
     d1 = json.loads(j)
+
+    # 从json文件中读取数据到字典
+    with open("my_data.json", "r") as f:
+        my_dict = json.load(f)
+
+    # 保存字典到json文件
+    with open("my_data.json", "w") as f:
+        json.dump(my_dict, f, indent=4)
 
     # 遍历
     for (key, value) in d.items():
@@ -299,7 +311,7 @@
     * python中**所有类都是`type`类的实例对象**
 
     ```py
-        C = type('C', (object, ), {'num': 0})
+        C = type('C', (object, ), {'num': 0}) # 动态定义类
 
         # 相当于: 
         class C(object):
@@ -1098,7 +1110,6 @@
         import sys
         from my_gui import Ui_MainWindow
 
-
         class MyApp(QMainWindow): 
             def __init__(self):
                 super().__init__()
@@ -1114,6 +1125,31 @@
             myapp = MyApp()
             myapp.show()
             sys.exit(app.exec_())
+    ```
+* 自定义信号
+    ```py
+        class MyData(QObject):
+            valueChanged = pyqtSignal(str) # 定义信号
+            # valueChanged = pyqtSignal(str, int) # 信号的参数是一个str类型数值和一个int类型数值
+            # valueChanged = pyqtSignal([str], [str, int]) # 信号的参数是一个str类型数值, 或者一个str类型数值和一个int类型数值
+
+            def __init__(self, value):
+                super().__init__()
+                self._value = value
+
+            @property
+            def value(self):
+                return self._value
+
+            @value.setter
+            def value(self, new_value):
+                if self._value != new_value:
+                    self._value = new_value
+                    self.valueChanged.emit(new_value) # 变量发生变化时发射信号
+
+        
+        # 为信号绑定槽函数
+        MyData("test").valueChanged.connect(lambda s: print(f"new value: {s}"))
     ```
 
 * 简单示例程序(参考: https://mp.weixin.qq.com/s?__biz=MzU0MDQ1NjAzNg==&mid=2247526677&idx=3&sn=00e809bfb65e3d43c8c0fcb5e0bc720f&chksm=fb3acc1ecc4d4508c6fc3d23349da6525385f1011358f0e682057be1475569152b6db937defd&scene=27)
