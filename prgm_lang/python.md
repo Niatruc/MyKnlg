@@ -154,6 +154,13 @@
     b'hello'.decode('utf-8') # 字节串转字符串
     bytes('hello', 'utf-8') # 字符串转字节串
     'hello'.encode('utf-8') # 字符串转字节串
+
+    # 将字节串转成16进制格式的字符串
+    # 方法一: 
+    import binascii
+    binascii.hexlify(b"asdf").decode('ascii') # '61736400'
+    # 方法二: 
+    ' '.join(['{:02x}'.format(x) for x in b"asdf"]) # '61 73 64 66'
 ```
 * `print("hello", end="")`: 不换行打印
 
@@ -175,7 +182,9 @@
 ## 元组
 ## 字典
 ```py
-    d = {}
+    d = {'a': 1, 'b': 2}
+
+    list(d.items()) # [('a', 1), ('b', 2)]
 
     del d['a'] # 删除键'a'
     
