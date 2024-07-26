@@ -161,6 +161,10 @@
     binascii.hexlify(b"asdf").decode('ascii') # '61736400'
     # 方法二: 
     ' '.join(['{:02x}'.format(x) for x in b"asdf"]) # '61 73 64 66'
+
+    # 将16进制格式字符串转成字节串
+    hex_text = "61 73 64 66"
+    bytes.fromhex(hex_text)
 ```
 * `print("hello", end="")`: 不换行打印
 
@@ -431,13 +435,16 @@
                 ```py
                     from functools import partial
 
+                    def func(a):
+                        print(a)
+
                     num_list = [1, 2, 3]
                     func_list = []
                     for i in num_list: 
-                        a = i
-                        # func_list.append(lambda: print(a)) # 这样会导致所有lambda用的都是最新的a, 也就是3
-                        func_list.append(partial(func_list, a)) # 这样可以捕获变量a的值
-                    func_list[0]()
+                        # func_list.append(lambda: print(i)) # 这样会导致所有lambda用的都是最新的i, 也就是3
+                        func_list.append(partial(func, i)) # 这样可以捕获变量i的值
+
+                    func_list[0]() # "1"
                 ```
         * 全局(G): `globals()`
         * 内置(B): `dir(__builtins__)`
