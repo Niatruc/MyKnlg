@@ -1,9 +1,10 @@
 * `nvm`
     * `root`: 打印nvm的安装目录
     * `ls`: 列出已安装的node
-    * `nvm ls available`
+        * `ls available`
     * `install <版本号>`
         * 下载的node放在环境变量`NVM_HOME`指定的目录中. 
+        * `install lts`
     * `use <版本号>`
         * 会以环境变量`NVM_SYMLINK`创建一个链接, 指向该版本node的目录. 
     * `arch 64`: 设置位数

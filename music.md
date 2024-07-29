@@ -321,7 +321,51 @@
     * 按`+`慢速(1/2)播放. 
     * 长按`+`倒放. 
 
-## 雅马哈点大提琴
+# akai mpc force
+* 按键
+    * pad: 8 * 8 个
+    * `launch`: 每个`launch`在按下时, 当前行的所有片段都会演奏. 
+    * 音轨选择器: pad按键群下方的数字1-8按键. 
+
+    * 音轨指派(track assignment): 
+        * 和指派模式按钮配合使用, 按下指派模式按钮中的一个后, 音轨指派按钮会亮起功能颜色, 这时按下音轨指派按钮即可应用功能. 
+        * 第二功能组: 按住shift键并按音轨指派按键, 可应用第二功能(在按键下方注明):
+            * `OCT-`: note模式下可对pad按钮减小8度(即Octave). 
+            * `OCT+`: 与上述相反. 
+    * 指派模式按钮(assign mode buttons)
+        * `mute`: 将音轨静音
+        * `solo`
+        * `rec arm`: 开始录制音频到片段中(需要先按`rec`键使其亮起)
+        * `clip stop`: 停止音轨上播放的片段. 
+    * 编辑
+        * `select`: 
+        * `edit`: 
+        * `copy`: 
+        * `delete`: 
+    
+    * 模式
+        * 演奏(`launch`): 每个pad代表一个音频片段(clip), 按下后通常会在下个小节的第一拍开始播放
+            * 片段编辑
+                * 创建一个片段: 按住`select`, 再双击一个pad; 或者双击屏幕上的空白格子.  
+                * 按住`edit`/`delete`, 再按一个pad, 即可编辑/删除片段
+            * 音轨编辑
+                * 每一列代表一个音轨(track). 一条音轨中同一时间只能有一个片段在播放. 
+                * 在空列长按对应的音轨选择器, 创建一个新音轨. 
+                * 按住`edit`/`delete`, 再按音轨编号键, 即可编辑/删除音轨
+            * `shift + `
+        * 音符(`note`): 每个pad代表一个音符
+            * `shift + note`: 编辑音符的排列方式等. 
+            * 长按可选择pad的音符排布方式:
+                * chromatic
+                * scales
+                * 
+        * 步进序列(`step seq`): 每个pad代表一拍, 演奏时当前拍对应的pad会高亮. 
+            * 
+    * `load`
+
+* 音源
+
+## 雅马哈电大提琴
 * https://www.nt-instruments.com/cello/yamaha-electric/
 * http://www.yamahamusic.com.tw/instrument/winds&strings/silent-strings/silent%20cello-svc50.htm
 
