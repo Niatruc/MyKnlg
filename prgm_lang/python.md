@@ -161,6 +161,8 @@
     binascii.hexlify(b"asdf").decode('ascii') # '61736400'
     # 方法二: 
     ' '.join(['{:02x}'.format(x) for x in b"asdf"]) # '61 73 64 66'
+    # 方法三: 
+    b"asdf".hex(" ")
 
     # 将16进制格式字符串转成字节串
     hex_text = "61 73 64 66"
@@ -175,6 +177,15 @@
 
     a1 = ["%02x" % x for x in a1] # 列表推导式
     list(map(lambda x: "%02x" % x, a1)) # 对列表的每个元素应用函数, 生成新列表
+
+    # 迭代器
+    it = iter([1, 3, 5, 7])
+    for _ in range(8):
+        res = next(it) # 通过迭代器获取下一个
+        print(res)
+
+    # 利用迭代器, 获取列表中第一个符合条件的值
+    next((i for i in [1,2,3] if i > 2), -1)
     
     a1.extend(a2) # 合并列表
 
@@ -183,6 +194,26 @@
     list(set(a1).difference(set(a2))) # 差集
 
 ```
+* `yield`: 生成器
+    ```py
+        import sys
+        
+        def fibonacci(n): # 生成器函数 - 斐波那契
+            a, b, counter = 0, 1, 0
+            while True:
+                if (counter > n): 
+                    return
+                yield a # 函数每次运行到这里时, 返回一个迭代器, 并将a作为函数的返回值
+                a, b = b, a + b
+                counter += 1
+        f = fibonacci(10) # f 是一个迭代器, 由生成器返回生成
+        
+        while True:
+            try:
+                print (next(f), end=" ")
+            except StopIteration:
+                sys.exit()
+    ```
 ## 元组
 ## 字典
 ```py
@@ -236,6 +267,10 @@
 
 
 # 元编程
+* 内省
+    * 获取一个对象的所有属性(包括方法): `dir(obj)`
+* 执行动态代码: 
+    * `eval(expression, globals=None, locals=None)`: `globals`和`locals`指定了闭包的作用域
 * 函数作为对象: 
     ```py
         import inspect
@@ -265,6 +300,16 @@
         #   keyword_args: 关键字参数(KEYWORD_ONLY)
         #   tuple_grp_args: 可变位置参数(VAR_POSITIONAL)
         #   dict_kw_args: 可变关键字参数(VAR_KEYWORD)
+
+        # 实现函数内"静态变量"
+        def counter():
+            if not hasattr(counter, 'count'):
+                counter.count = 0
+            counter.count += 1
+            return counter.count
+
+        print(counter())  # Output: 1
+        print(counter())  # Output: 2
     ```
 * `mixin`: 通过类似C++的多继承的方式, 达到与ruby的模块相同的效果.
     ```py
@@ -330,7 +375,7 @@
         class C(object):
             num = 0
         
-        # 动态修改对象中的方法(猴子补丁): 
+        # 动态修改对象中的方法(猴子补丁`monkey patch`): 
         import types
         def f(self):
             return self.a
@@ -556,7 +601,7 @@
     os.rename() # 重命名文件 
     os.listdir() # 列出指定目录下所有文件 
     os.chdir() # 改变当前工作目录
-    os.getcwd() # 获取当前文件路径
+    os.getcwd() # 获取当前工作路径
     os.mkdir() # 新建目录
     os.rmdir() # 删除空目录(删除非空目录, 使用shutil.rmtree() #) #
     os.makedirs() # 创建多级目录
@@ -726,7 +771,7 @@
     str.decode(encodeing[,replace]) # 解码string,出错引发ValueError异常
     str.encode(encodeing[,replace]) # 解码string
     str.endswith(substr[,beg,end]) # 字符串是否以substr结束, beg,end是范围
-    str.startswith(substr[,beg,end]) # 字符串是否以substr开头, beg,end是范围
+    str.startswith(substr[,beg,end]) # 字符串是否以substr开头(substr可以是正则表达式(r"sth")), beg, end是范围 
     str.expandtabs(tabsize = 8) # 把字符串的tab转为空格, 默认为8个
     str.find(str,[stat,end]) # 查找子字符串在字符串第一次出现的位置, 否则返回-1
     str.index(str,[beg,end]) # 查找子字符串在指定字符中的位置, 不存在报异常
@@ -813,9 +858,17 @@
     m.group(1) # 获取捕获的第一个分组
 
     re.search(pattern, string, flags=0) # 扫描整个字符串并返回第一个成功的匹配
-    re.findall(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个列表返回
+    re.findall(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个列表返回(若正则表达式中有多个圆括号, 会将每个圆括号匹配的字符串放到一个元组中, 而返回的列表由这些元组组成)
     re.finditer(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个迭代器返回
     re.sub(pattern, repl, string, count=0, flags=0) # 替换匹配到的字符串
+
+    # `finditer`示例: 匹配"r", "12323", "22"
+    iter = re.finditer(r"\s*([^\s]+)\s*", " r   12323  22 ")
+    for match_obj in iter:
+        print(repr(match_obj[1]))
+
+    # `findall`示例
+    re.findall(r"\s*([^\s]+),\s*([^\s]+)\s*", " r, 1   s,2  t,  3 ") #=> [('r', '1'), ('s', '2'), ('t', '3')]
 ```
 
 ## `math`
