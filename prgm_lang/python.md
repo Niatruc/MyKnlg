@@ -149,7 +149,11 @@
     info = 'abca'
     info.find("a") # 搜索子串第一次出现的位置, 未找到则返回-1
     info.index("a") # 同上, 但未找到时抛出异常
+```
+* `print("hello", end="")`: 不换行打印
 
+## 字节数据
+```py
     str(b'hello', 'utf-8') # 字节串转字符串
     b'hello'.decode('utf-8') # 字节串转字符串
     bytes('hello', 'utf-8') # 字符串转字节串
@@ -167,8 +171,12 @@
     # 将16进制格式字符串转成字节串
     hex_text = "61 73 64 66"
     bytes.fromhex(hex_text)
+
+    # 整数和字节数据互转
+    integer_value = 1024
+    big_endian_bytes = integer_value.to_bytes(2, 'big')  #=> b'\x04\x00'
+    iv = int.from_bytes(big_endian_bytes, 'big'))
 ```
-* `print("hello", end="")`: 不换行打印
 
 ## 列表
 ```py
@@ -177,6 +185,8 @@
 
     a1 = ["%02x" % x for x in a1] # 列表推导式
     list(map(lambda x: "%02x" % x, a1)) # 对列表的每个元素应用函数, 生成新列表
+
+    del a[0] # 删除第0个元素
 
     # 迭代器
     it = iter([1, 3, 5, 7])
@@ -269,6 +279,20 @@
 # 元编程
 * 内省
     * 获取一个对象的所有属性(包括方法): `dir(obj)`
+    ```py
+        import inspect
+
+        # 获取当前行详细信息
+        def debug_print(*args):
+            current_frame = inspect.currentframe()
+            caller_frame = current_frame.f_back
+            file_name = caller_frame.f_code.co_filename
+            line_number = caller_frame.f_lineno
+            function_name = caller_frame.f_code.co_name
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            base_info = f"[{current_time}] {file_name}:{line_number} {function_name}: {" ".join(args)}"
+            print(base_info)
+    ```
 * 执行动态代码: 
     * `eval(expression, globals=None, locals=None)`: `globals`和`locals`指定了闭包的作用域
 * 函数作为对象: 
