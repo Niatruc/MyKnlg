@@ -175,7 +175,7 @@
     # 整数和字节数据互转
     integer_value = 1024
     big_endian_bytes = integer_value.to_bytes(2, 'big')  #=> b'\x04\x00'
-    iv = int.from_bytes(big_endian_bytes, 'big'))
+    iv = int.from_bytes(big_endian_bytes, 'big')
 ```
 
 ## 列表
@@ -1247,6 +1247,9 @@
         # 为信号绑定槽函数
         MyData("test").valueChanged.connect(lambda s: print(f"new value: {s}"))
     ```
+    * 错误
+        * `'PyQt5.QtCore.pyqtSignal' object has no attribute 'connect'`
+            * 注意**信号一定要定义为类变量**
 
 * 简单示例程序(参考: https://mp.weixin.qq.com/s?__biz=MzU0MDQ1NjAzNg==&mid=2247526677&idx=3&sn=00e809bfb65e3d43c8c0fcb5e0bc720f&chksm=fb3acc1ecc4d4508c6fc3d23349da6525385f1011358f0e682057be1475569152b6db937defd&scene=27)
     ```py
