@@ -154,6 +154,7 @@
 
 ## 字节数据
 ```py
+    # 字节和字符串互转
     str(b'hello', 'utf-8') # 字节串转字符串
     b'hello'.decode('utf-8') # 字节串转字符串
     bytes('hello', 'utf-8') # 字符串转字节串
