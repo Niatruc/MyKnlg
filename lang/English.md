@@ -279,6 +279,7 @@
     * function prelude: 同下
     * function prologue: 函数序言(函数开始时运行的一段指令)
     * ISA: Instruction Set Architecture, 指令集架构
+    * nibble: 半字节
     * PCI(Peripheral Component Interconnect): 外设部件互连标准. 
         * peripheral: 外围设备. 
     * rouge process: 流氓进程

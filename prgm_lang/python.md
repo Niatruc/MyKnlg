@@ -125,9 +125,16 @@
                     * 方法二:
                         * 修改python程序, 使用`sys._MEIPASS`获取解压生成的临时目录, 然后同上所述建立软链接. 
 # 基本数据结构
+## 数值
+```py
+    int("0x123", 16) # 字符串转整数. 二参表示进制
+```
 ## 字符串
 ```py
     r"D:\dir" # 反斜杠不转义
+
+    # 格式化字符串
+    f"his name is {name:20s}" # 变量`name`后的冒号后面是格式字符串
 
     # 多行字符串
     s = """
@@ -886,6 +893,7 @@
     re.findall(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个列表返回(若正则表达式中有多个圆括号, 会将每个圆括号匹配的字符串放到一个元组中, 而返回的列表由这些元组组成)
     re.finditer(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个迭代器返回
     re.sub(pattern, repl, string, count=0, flags=0) # 替换匹配到的字符串
+    re.split(pattern: str | Pattern[str], string: str, maxsplit: int = 0, flags: _FlagsType = 0)  # 使用正则表达式分割字符串
 
     # `finditer`示例: 匹配"r", "12323", "22"
     iter = re.finditer(r"\s*([^\s]+)\s*", " r   12323  22 ")
