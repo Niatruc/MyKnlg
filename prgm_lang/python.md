@@ -261,7 +261,11 @@
 
 # 函数
 # 模块
+```py
+    import my_module
 
+    my_module.__file__ # 获取模块路径
+```
 # 异常处理
 ```py
     import traceback
@@ -274,14 +278,26 @@
     else: 
         pass
 ```
-
+# 类型注解
+```py
+    from typing import *
+    def test(a: str, b: int = 2) -> None:
+        pass
+    
+    l: list[int] = []  # list[整型]
+    t: tuple[int, str] = (1, '2')  # 元组的第一个元素是int类型, 第二个元素是str类型
+    d: dict[str, int] = {'1': 1}
+```
 # 面向对象
 * 
     ```py
         class Student:
             __slots__ = ('name', 'age') # 限制对象属性
     ```
-* `super`: 在子类的函数中, 调用父类方法(如, `f1`), 需要这么写: `super().f1()`
+* `super`: 
+    * 是用来解决多重继承问题的
+    * `super(type[, object-or-type])`: `type`是父类, `object-or-type`一般是`self`
+    * 在子类的函数中, 调用父类方法(如, `f1`), 需要这么写: `super().f1()`
 
 
 # 元编程
@@ -383,14 +399,34 @@
             # attrs: 属性/方法字典
             def __new__(cls, name, bases, attrs):
                 attrs['name'] = "n"
-                attrs['func1'] = lambda self: print("abcd")
+                attrs['func1'] = lambda self: print("abcd") # 定义实例方法
                 return super().__new__(cls, name, bases, attrs)
+            
+            def f(self): # 这个是类方法, 下面的C类可用
+                pass
 
         class C(metaclass = MyMetaClass): # 指定元类
             pass
 
         c = C()
         c.func1()
+    ```
+    * 单例模式
+    ```py
+        class Singleton(type):
+            _instances = {}
+
+            def __call__(cls, *args, **kwargs):
+                if cls not in cls._instances:
+                    cls._instances[cls] = super().__call__(*args, **kwargs)
+                return cls._instances[cls]
+
+        class MyClass(metaclass=Singleton):
+            pass
+
+        a = MyClass()
+        b = MyClass()
+        print(a is b)  # True
     ```
 * 类作为对象时的其它方法
     * `__bases__`: 类的所有基类(元组)
@@ -636,7 +672,7 @@
     os.getcwd() # 获取当前工作路径
     os.mkdir() # 新建目录
     os.rmdir() # 删除空目录(删除非空目录, 使用shutil.rmtree() #) #
-    os.makedirs() # 创建多级目录
+    os.makedirs() # 递归创建多级目录
     os.removedirs() # 删除多级目录
     os.stat(file) # 获取文件属性
     os.chmod(file) # 修改文件权限
@@ -891,7 +927,7 @@
 
     re.search(pattern, string, flags=0) # 扫描整个字符串并返回第一个成功的匹配
     re.findall(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个列表返回(若正则表达式中有多个圆括号, 会将每个圆括号匹配的字符串放到一个元组中, 而返回的列表由这些元组组成)
-    re.finditer(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个迭代器返回
+    re.finditer(pattern, string, flags=0) # 找到RE匹配的所有字符串, 并把他们作为一个迭代器返回(可获得每个匹配字符串及匹配的起始结束位置)
     re.sub(pattern, repl, string, count=0, flags=0) # 替换匹配到的字符串
     re.split(pattern: str | Pattern[str], string: str, maxsplit: int = 0, flags: _FlagsType = 0)  # 使用正则表达式分割字符串
 
@@ -906,6 +942,51 @@
     # `sub`示例: 使用`\1`表示捕获的第一个分组
     re.sub("(<|>)", r"\\\1", "<a> [<b> (64)]")
 ```
+
+## `struct`
+* 字节序等: 
+|字符|字节顺序|大小|对齐方式|
+|-|-|-|-|
+|@|按原字节|按原字节|按原字节(**会因按系统对齐而产生多余的字节**)|
+|=|按原字节|标准|标准(**不会有多余的字节**)|
+|<|小端|标准|无|
+|>|大端|标准|无|
+|!|网络(大端)|标准|无|
+
+* 格式
+|C 类型 |Python 类型 |标准大小 |备注 |
+|-|-|-|-|
+|`x`|填充字节|-|(7)|
+|`c`|`char`|长度为 1 的字节串 |1|
+|`b`|`signed char`|integer|1|(1), (2)|
+|`B`|`unsigned char`|integer|1|(2)|
+|`?`|`_Bool`|bool|1|(1)|
+|`h`|`short`|integer|2|(2)|
+|`H`|`unsigned short`|integer|2|(2)|
+|`i`|`int`|integer|4|(2)|
+|`I`|`unsigned int`|integer|4|(2)|
+|`l`|`long`|integer|4|(2)|
+|`L`|`unsigned long`|integer|4|(2)|
+|`q`|`long long`|integer|8|(2)|
+|`Q`|`unsigned long long`|integer|8|(2)|
+|`n`|`ssize_t`|integer|-|(3)|
+|`N`|`size_t`|integer|-|(3)|
+|`e`|-|float|2|(4)|
+|`f`|`float`|float|4|(4)|
+|`d`|`double`|float|8|(4)|
+|`s`|`char[]`|字节串|-|(9)|
+|`p`|`char[]`|字节串|-|(8)|
+|`P`|`void*`|integer|-|(5)|
+
+```py
+    import struct
+    
+    struct.pack('>h', 1023) # 数据转字节串 #=> b'\x03\xff'
+
+    struct.unpack('>bhl', b'\x01\x00\x02\x00\x00\x00\x03') # 字节串转元组 #=> (1, 2, 3)
+```
+
+
 
 ## `math`
 * `ceil`: 取大于等于x的最小的整数值, 如果x是一个整数, 则返回x
@@ -1158,7 +1239,7 @@
     session = Session()
 
     #*****************增加数据********************
-    pur_order = PurchaseOrder(cost=19.7,desc="python编程之路")
+    pur_order = PurchaseOrder(cost=19.7, desc="python编程之路")
 
     session.add(pur_order)
     session.add_all(
@@ -1170,7 +1251,18 @@
 
     session.query(PurchaseOrder).filter(PurchaseOrder.id>2).update({"cost":29.7})
     session.query(PurchaseOrder).filter(PurchaseOrder.id==2).update({"cost":PurchaseOrder.cost+40.1},synchronize_session=False)  #synchronize_session用于query在进行delete or update操作时, 对session的同步策略。
+
+    # 方法二
+    update(User).where(User.id == 1).values(name='New Name')
+
+    # 方法三
+    session.merge(User(id=1, name='New Name'))
+
+    # 方法四
+    session.replace(User(id=1, name='New Name'))
+
     session.commit()
+
 
     #*****************删除数据********************
     session.query(PurchaseOrder).filter(PurchaseOrder.id==1).delete()
@@ -1194,7 +1286,16 @@
     #关闭session
     session.close()
 ```
-
+* `alembic`: 用来做OMR模型与数据库的迁移与映射. 需要用pip单独安装. 
+    * `init <仓库名>`: 生成一个`<仓库名>`目录和一个`alembic.ini`文件. 
+        * `alembic.ini`: 
+            * 修改`sqlalchemy.url`, 赋值为目标数据库的连接url. 
+        * ``<仓库名>/``: 
+            * `env.py`: 修改`target_metadata`参数, 值为前面的`Base`模块的`Base.metadata`
+    * `revision --autogenerate -m "注释"`: 创建迁移文件
+    * `upgrade head|<版本>`: 迁移到数据库
+    * `downgrade head|<版本>`: 降级
+    * `history`: 列出迁移版本及信息
 ## fastapi
 * 问题
     * 
