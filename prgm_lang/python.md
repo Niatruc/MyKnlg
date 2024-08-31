@@ -161,6 +161,11 @@
 
 ## 字节数据
 ```py
+    bytes_len = 10
+    bytes(bytes_len) # 生成一个长度为bytes_len的全零字节串
+
+    # bytes类型字节串不能修改, 要能修改得用bytearray
+
     # 字节和字符串互转
     str(b'hello', 'utf-8') # 字节串转字符串
     b'hello'.decode('utf-8') # 字节串转字符串
@@ -569,7 +574,7 @@
                     l1 += 1
                     l2 = 2
                     def g():
-                        nonlocal l2 # 必须有这个声明, 否则报错: local variable 'l1' referenced before assignment
+                        nonlocal l2 # 必须有这个声明, 否则报错: local variable 'l2' referenced before assignment
                         l2 += 1
                         return l2
                     return g
@@ -655,6 +660,21 @@
     r.recv()
 ```
 
+## 多进程
+* 共享内存
+    ```py
+        from multiprocessing import shared_memory
+
+        shm_size = 8
+        shm = shared_memory.SharedMemory(create=True, size=shm_size)  # 创建共享内存块
+        data = shm.buf[:]  # 获取共享内存块的视图
+        data[:] = bytes(shm.size)  # 写入全零数据
+
+        # 关闭共享内存块
+        # shm.close()
+        # shm.unlink()
+    ```
+
 # 常用模块
 * 参考: 
     * https://blog.csdn.net/qq_40674583/article/details/81940974
@@ -717,7 +737,7 @@
     os.path.sameopenfile(fp1, fp2) # 判断fp1和fp2是否指向同一文件
     os.path.samestat(stat1, stat2) # 判断stat tuple stat1和stat2是否指向同一个文件
     os.path.splitdrive(path) # 一般用在windows下, 返回驱动器名和路径组成的元组
-    os.path.walk(path, visit, arg) # 遍历path, 给每个path执行一个函数详细见手册
+    os.path.walk(path, visit, arg) # 遍历path, 给每个path执行一个函数
     os.path.supports_unicode_filenames() # 设置是否支持unicode路径名
 
     # os.stat
