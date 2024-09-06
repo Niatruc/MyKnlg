@@ -124,6 +124,112 @@
                         2. 在打包后的程序运行前, 在它的工作目录下创建软链接指向`qiling`目录. 
                     * 方法二:
                         * 修改python程序, 使用`sys._MEIPASS`获取解压生成的临时目录, 然后同上所述建立软链接. 
+# 文档
+## sphinx
+* 参考
+    * [Build project documentation quickly with the Sphinx Python](https://medium.com/@pratikdomadiya123/build-project-documentation-quickly-with-the-sphinx-python-2a9732b66594)
+
+* 基本步骤
+    * 安装: `pip install sphinx sphinx_rtd_theme`
+    * 创建一个要存放文档的目录(后称`docs`), 然后切换到该目录. 
+    * 运行`sphinx-quickstart`, 在对话中填写项目信息. 之后会在docs下生成: 
+        * `_build/`
+            * `doctrees/`
+            * `html/`
+                * `static/`: 包含前端文件
+                * `index.html`: 文档的入口. 
+        * `_static/`
+        * `_templates/`
+        * `conf.py`: 记录Sphinx项目的配置. 
+        * `index.rst`: Sphinx项目的根文档. 包含`toctree`(内容表树)的根. 
+        * `Makefile`: 用于make
+    * 修改`conf.py`:
+        ```py
+            # 添加: 
+            import os
+            import sys
+            sys.path.insert(0, os.path.abspath('<项目目录>'))
+
+            # 修改: 
+            extensions = [
+                'sphinx.ext.autodoc',
+                'sphinx.ext.viewcode',
+                'sphinx.ext.napoleon'
+            ]
+
+            # 添加: 
+            html_theme = 'sphinx_rtd_theme'
+        ```
+    * `sphinx-apidoc -o docs <项目目录> <排除文件(可用通配符)>`: 会给每个模块生成`<模块名>.rst`; 另有一个`module.rst`
+        * 注: 对于目录, 要确保有`__init__.py`文件(表示其为一个`package`), 否则`sphinx-apidoc`不会为其生成rst文件. 
+    * 修改`index.rst`, 在其中引用`modules.rst`:
+        ```rst
+            .. toctree::
+                :maxdepth: 2
+                :caption: Contents:
+
+                modules
+        ```
+    * 在docs目录下执行`make html`, 生成前端页面. 
+* 支持markdown
+    * `pip install -U myst-parser`
+    * 在`conf.py`的`extensions`列表中添加`'myst_parser'`. 
+    * 可将指定后缀的文件识别为markdown文件. 比如, 要将`.txt`文件识别为markdown文件, 可修改`conf.py`: 
+        ```py
+            source_suffix = {
+                '.rst': 'restructuredtext',
+                '.txt': 'markdown', # 添加此行
+                '.md': 'markdown',
+            }
+        ```
+    * 在`rst`文件中:
+        * 可在`toctree`节点下, 添加要渲染的md文件路径. 
+        * 可在其它节下面添加引入md文件的节: 
+            ```sh
+                .. include:: ../tutorial.md
+                    :parser: myst # 或者commonmark
+            ```
+* latexpdf
+    * 安装相关包: `sudo apt install texlive-xetex texlive-lang-chinese latexmk`
+* rst: `reStructuredText`标记语言
+    ```sh
+        .. automodule:: my_module
+            :members:
+            :no-undoc-members: # 排除没有docstring的类和函数等. 反之为 :undoc-members:
+            :exclude-members: PrivateClass, private_function, *private_* # 指定排除的模块或行数(不会生产文档)
+
+        # 添加代码示例
+        .. code-block:: python
+
+            from my_module import MyClass
+
+            my_class = MyClass()
+            my_class.public_method()
+    ```
+* python docstrings
+    ```py
+        def f(a: dict):
+            """f函数. 
+
+            Args:
+                a (dict): 参数a. 
+
+            Examples:
+                * 你好
+                .. code-block:: python
+
+                    def f2():
+                        f()
+
+                .. code-block:: json
+
+                    {
+                        "a": 1
+                    }
+            """
+            pass
+    ```
+    * 可以使用markdown, 但是代码块不能用md的语法, 需用restructuredText, 比如`.. code-block:: python`, 且**要紧接着一个空行**, 且**后面的代码块需要多一个缩进**. 
 # 基本数据结构
 ## 数值
 ```py
@@ -209,6 +315,9 @@
 
     # 利用迭代器, 获取列表中第一个符合条件的值
     next((i for i in [1,2,3] if i > 2), -1)
+
+    # (filter函数的一参为None时)去除列表中所有非True值, 包括空字符串, 0等
+    list(filter(None, ["", " ", 123, 0])) # => [" ", 123]
     
     a1.extend(a2) # 合并列表
 
@@ -564,6 +673,19 @@
 
                     func_list[0]() # "1"
                 ```
+
+                ```py
+                    functions = []
+                    for i in range(3):
+                        def make_f(i):
+                            def f():
+                                return i
+                            return f
+                        functions.append(make_f(i))
+
+                    for f in functions:
+                        print(f())  # 输出：0 1 2
+                ```
         * 全局(G): `globals()`
         * 内置(B): `dir(__builtins__)`
         * 示例
@@ -874,7 +996,7 @@
     str.title() # 返回标题化的字符串（所有单词首字母大写, 其余小写）
     str.istitle() # 如果字符串是标题化的(参见title())则返回true,否则false
     str.join(seq) # 以str作为连接符, 将一个序列中的元素连接成字符串
-    str.split(str=‘‘,num) # 以str作为分隔符, 将一个字符串分隔成一个序列, num是被分隔的字符串
+    str.split(str='', num) # 以str作为分隔符, 将一个字符串分隔成一个序列, num是被分隔的字符串
     str.splitlines(num) # 以行分隔, 返回各行内容作为元素的列表
     str.lower() # 将大写转为小写
     str.upper() # 转换字符串的小写为大写
