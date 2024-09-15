@@ -128,6 +128,7 @@
 ## sphinx
 * 参考
     * [Build project documentation quickly with the Sphinx Python](https://medium.com/@pratikdomadiya123/build-project-documentation-quickly-with-the-sphinx-python-2a9732b66594)
+    * [[野火]sphinx文档规范与模版](https://ebf-contribute-guide.readthedocs.io/zh-cn/latest/index.html)
 
 * 基本步骤
     * 安装: `pip install sphinx sphinx_rtd_theme`
@@ -159,6 +160,12 @@
 
             # 添加: 
             html_theme = 'sphinx_rtd_theme'
+
+            # 添加
+            autodoc_default_options = {
+                'members': True,
+                'special-members': '__init__',
+            }
         ```
     * `sphinx-apidoc -o docs <项目目录> <排除文件(可用通配符)>`: 会给每个模块生成`<模块名>.rst`; 另有一个`module.rst`
         * 注: 对于目录, 要确保有`__init__.py`文件(表示其为一个`package`), 否则`sphinx-apidoc`不会为其生成rst文件. 
@@ -188,6 +195,20 @@
             ```sh
                 .. include:: ../tutorial.md
                     :parser: myst # 或者commonmark
+            ```
+    * 交叉引用: 参考`https://myst-parser.readthedocs.io/en/latest/syntax/cross-referencing.html#heading-target`
+        * 设置锚点: 
+            ```
+                (heading-target)=
+                ### Heading
+            ```
+        * 引用: `[引用](#heading-target)`
+    * 在markdown文件新增语法: 
+        * 在md中渲染rst: 
+            ```
+                ```{eval-rst}
+                    可以这样引用sphinx生成的方法: :func:`my_mod.func1`
+                ```
             ```
 * latexpdf
     * 安装相关包: `sudo apt install texlive-xetex texlive-lang-chinese latexmk`
@@ -401,6 +422,8 @@
     l: list[int] = []  # list[整型]
     t: tuple[int, str] = (1, '2')  # 元组的第一个元素是int类型, 第二个元素是str类型
     d: dict[str, int] = {'1': 1}
+
+    type MyType = list[int] # 自定义类型注解, 有助于编程时的代码提示
 ```
 # 面向对象
 * 
