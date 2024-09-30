@@ -349,6 +349,20 @@
 ```
 * `yield`: 生成器
     ```py
+        def f():
+            a = 1
+            while 1:
+                res = yield a
+                a += 1
+        
+        g = f() # g是一个生成器. 
+        next(g) # 调用生成器. 返回值为yield后的值
+    ```
+
+    * `f()`不会实际运行`f`的函数体
+    * 调用`next`时`f`才开始执行. 遇到`yield`后, 返回`a`, 停止. 再次`next`才往下执行
+    
+    ```py
         import sys
         
         def fibonacci(n): # 生成器函数 - 斐波那契
@@ -367,6 +381,7 @@
             except StopIteration:
                 sys.exit()
     ```
+    
 ## 元组
 ## 字典
 ```py
@@ -758,21 +773,6 @@
                 return f"Hello, {name}!"
             mymodule.greet = greet
         ```
-
-* 生成器
-    ```py
-        def f():
-            a = 1
-            while 1:
-                res = yield a
-                a += 1
-        
-        g = f() # g是一个生成器. 
-        next(g) # 调用生成器. 返回值为yield后的值
-    ```
-
-    * `f()`不会实际运行`f`的函数体
-    * 调用`next`时`f`才开始执行. 遇到`yield`后, 返回`a`, 停止. 再次`next`才往下执行
 
 # 基本用法
 ## 文件
