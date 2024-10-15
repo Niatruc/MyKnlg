@@ -13,7 +13,7 @@
                 "sudo": true
             ```
     * 配置使用conda环境
-        * 打开全局配置文件`settings.json`, 新增配置项: `"python.condaPath: "<conda程序的绝对路径>"`
+        * 打开全局配置文件`settings.json`, 新增配置项: `"python.condaPath: "<conda程序的绝对路径>"`; 重启vscode. 
         * 解决无法使用python2进行调试的问题(`An Invalid Python Interpreter Is Selected`)
             * 在扩展中找到`Python`, 点击`Uninstall`键右侧的下拉键, 点击`Install Another Version`, 选择`v2021.9.1246542782`(这个插件对Python2的支持到这个版本结束). 
         * `launch.json`: 
