@@ -679,7 +679,10 @@
                     print('Called example function')
                 print(example.__name__, example.__doc__)
             ```
-    * 类装饰器: 区别于函数装饰器, 参数是类. 
+        * `@cached_property`
+            * `from functools import cached_property`
+            * 可将修饰的方法作为缓存属性, 方法的返回值会被缓存在实例中. 值仅计算一次. 
+    * 类的装饰器: 区别于函数装饰器, 参数是类. 
         ```py
             def entity(cls):
                 for key, attr in cls.__dict__.items():
@@ -689,6 +692,23 @@
             class C:
                 pass
         ```
+    * 类作为装饰器
+        * 描述符协议: 
+            * 实现了`__get__`,` __set__` 和 `__delete__`方法的类(分别用于获取属性值, 设置属性值, 删除属性). 
+            * 数据描述符: 同时定义了get/set
+            * 非数据描述符: 只定义了get
+        * 例
+            ```py
+                class cached_property:
+                    def __init__(self, func): # 被装饰的函数会作为参数传进来
+                        self.func = func
+
+                    def __get__(self, instance, owner=None): # `instance`即被装饰方法的`self`参数, 也即方法所属实例. 
+                        ...
+
+                    def __set_name__(self, owner, name):
+                        ...
+            ```
 * 命名空间
     * 符号集合; 字典(键为符号名, 值为对象); LEGB法则. 
     * 四类
