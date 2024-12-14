@@ -381,7 +381,18 @@
             except StopIteration:
                 sys.exit()
     ```
-    
+* `zip`函数: 
+    ```py
+        a = [1, 2, 3]
+        b = [4, 5, 6]
+        zipped = zip(a, b)
+        list(zipped) # [(1, 4), (2, 5), (3, 6)]
+
+        # 使用迭代器
+        x = iter([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        print(list(zip(x, x, x))) # [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+        print(list(zip(*[x] * 3))) # 同上
+    ```
 ## 元组
 ## 字典
 ```py
