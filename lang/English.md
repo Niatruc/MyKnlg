@@ -28,6 +28,7 @@
 * 动词
     * admire: 钦佩; 欣赏; 仰慕
     * anticipate: 预料
+    * ascertain: 查明
     * aspire: 渴望(成就); 有志(成为);
         * aspire to do
     * circumnavigate: 环绕航线
@@ -61,6 +62,7 @@
     * impersonate: 模仿; 冒充; 扮演
     * implicate: 牵涉, 涉及; 牵连; 表明...是起因
         * n. 包含的东西
+    * interpose: 介入
     * interrogate: 审问; (在计算机上)查询
         * interrogative: 
             * adj. 询问的; 疑问式的; 
@@ -77,7 +79,9 @@
     * refrain: 避免; 抑制
         * n. 副歌; 迭句
     * resort: 求助; 诉诸
+    * revive: 复原
     * saute: 炒
+    * sidestep: 规避(问题)
     * snigger: 窃笑
     * stall: 抛锚, 熄火; 暂缓
         * n: 货摊; 淋浴室
@@ -151,9 +155,11 @@
 * 形容词/副词
     * a wide gamut of: 大范围的(gamut: 全范围)
     * arrogant: 傲慢的
+    * barely: 仅仅; 几乎没有
     * bizarre [bɪˈzɑː(r)]: 奇怪的
     * categorical: 绝对的
     * coherent: 连贯的; 合乎逻辑的; 清楚易懂的
+    * compelling: 令人信服的
     * comprehensively: 彻底地
     * comprise: 包括; 由...组成
     * cynic: 愤世嫉俗的
@@ -163,13 +169,18 @@
     * essentially: 本质上; 基本上
     * flaky: 易剥落的; <美俚>极古怪的
     * grumpy: 易怒的
+    * immensely: 非常
     * imperative: 迫切的; 紧急的; 命令的; 专横的
         * imperative sentence: 祈使句
         * imperative operation: 强制性操作
         * imperative stipulation: 强制规定
+    * indifferent: 不感兴趣的; 漠不关心的
+        * be indifferent to
     * intermittent: 断断续续的
     * intuitive: 直觉的; 易懂的
     * iridescent: 色彩斑斓闪耀的
+    * judicious: 明智的
+    * laboriously: 费力地
     * lethal: 致命的
     * mandatory: 强制的; 法定的; 义务的
     * mnemonic: 记忆的; 记忆术的
@@ -210,6 +221,7 @@
     * incur: 招致; 引起; 带来(开销等)
         * incur 5 times overhead: 带来5倍多的开销
         * incur a great danger to
+    * leverage: 利用(现有资源或技术)
     * retrofit: 翻新
     * saturate: 使饱和
     * strain: 耗尽
@@ -258,6 +270,7 @@
     * prohibitively: 令人望而却步
         * ~ high: 过高的
     * quantitative: 量化的
+    * salient: 突出的; 显著的; 最重要的; 
     * sheer volume of: 大量的(业务, 工作, 邮件等)
     * simultaneously: 同时地
     * sound: 合理的
@@ -272,6 +285,7 @@
 * 动词
     * clobber: 修改, 重写 (内存或寄存器)
 * 名词
+    * code audit: 代码审计
     * Code Caves: 可执行代码洞, 即计算机程序或二进制文件中通常未使用或包含未使用指令的可执行代码区域. 
     * commodity hardware: 商用硬件
         * 与之对应的是: custom hardware, proprietary hardware (专用硬件), bespoke hardware (订制硬件)
@@ -284,6 +298,7 @@
         * peripheral: 外围设备. 
     * rouge process: 流氓进程
     * sanity check: 完整性检查
+    * vetting code: 审计代码
 
 * 形容词
     * embedded: 嵌入的
