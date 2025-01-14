@@ -369,6 +369,30 @@
 * https://www.nt-instruments.com/cello/yamaha-electric/
 * http://www.yamahamusic.com.tw/instrument/winds&strings/silent-strings/silent%20cello-svc50.htm
 
+
+# 数字音频
+## MIDI
+* MMA: MIDI生产商联合会
+* AMEI: 日本音乐电气工业协会
+* GM1(通用MIDI 1.0规范化标准)
+    * 1995确立. 为了在最低的容量及其他硬件条件下获得最好的乐器音色表现. 
+    * 一些规范: 
+        * MIDI通道10为打击乐器专用通道. 
+        * 每个音色库最大包含128个音色, 每个音色有一个固定名称和ID(0~127). 
+        * 控制码组有128个控制码. 
+* GM2
+    * MMA和AMEI共同主导; 1999
+    * 增加更多音色和控制
+    * 对音色发声单元部分构建了一个规范化的框架
+    * 兼容GM1
+* DLS(Downloadable Sounds, 可载入音色的MIDI)
+    * 使MIDI数据能够携带一段音乐所需要的音色样本
+* XG(扩展GM标准)
+    * Yamaha制定
+* GS(通用标准MIDI)
+    * Roland开发制定
+    * 采用标准化方案, 并定义了新的MIDI表现控制功能, 如音色的用户编辑, 效果器, 更丰富的音色组合. 
+    * 音色编号为1~128
 # 歌曲分析
 * `晴天`
     * BPM: 137
