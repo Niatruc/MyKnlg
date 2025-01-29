@@ -240,6 +240,7 @@
     |衰减时间调节(残响长度)|`decay`|-|
     |早期反射声|`predelay`|-|
     |共鸣腔|`resonance chamber`|-|
+    |低保真|`lofi`, `Low-Fidelity`|-|
     |-|-|-|
 
 ## 综合效果器
@@ -326,15 +327,37 @@
     * pad: 8 * 8 个打击垫
     * `launch`: 每个`launch`在按下时, 当前行的所有片段都会演奏. 
     * 音轨选择器: pad按键群下方的数字1-8按键. 
+        * 第二功能: 配合`shift`使用, 设置全局的`launch quantization`, 用于对齐每个音轨. 比如, 选择`1 bar`, 则按下一个pad后, 将会在当前小节结束后开始此音轨(录音, 播放等). `2 bar`则在当前小节结束再加一个小节后开始此音轨. `None`则会立刻开始音轨
+    * `menu`: 
+        * `looper`: 循环录音, 支持叠录. 录下的音
+    * `play`
+    * `stop`
+    * `rec`
+        * 录音流程: 
+            * 按下该按键, 使其亮起. 
+            * 确保音轨为`rec`模式. 敲击音轨上一个pad, 其会开始红闪(同时节拍开始响起), 并在打拍到设置的小节数时开始录音. 
+    * `mixer`: 该面板可对各个音轨进行管理, 配置音量, 音效, IO等. 
+        * `volume`: 
+        * `pan&volume`: 
+            * 上方四个按钮: 
+                * 三个对应指派模式按钮`mute`, `solo`, `rec`
+                * `automation`: 
+                    * `Read (R)`
+                    * `Write (W)`
+        * `sends`: 
+        * `effects`: 
+        * `I/O`: 选择音频输入和输出
+        * `settings`: 
 
     * 音轨指派(track assignment): 
         * 和指派模式按钮配合使用, 按下指派模式按钮中的一个后, 音轨指派按钮会亮起功能颜色, 这时按下音轨指派按钮即可应用功能. 
-        * 第二功能组: 按住shift键并按音轨指派按键, 可应用第二功能(在按键下方注明):
+        * 第二功能组: 按住shift键并按音轨指派按键, 可应用第二功能(在按键下方注明). 也可按住shift键后长按音轨指派按键, 弹出相应功能框. 
+            * `metronome`: 可开启或关闭节拍. 
             * `OCT-`: note模式下可对pad按钮减小8度(即Octave). 
             * `OCT+`: 与上述相反. 
     * 指派模式按钮(assign mode buttons)
         * `mute`: 将音轨静音
-        * `solo`
+        * `solo`: 会将当前音轨以外的其他音轨静音
         * `rec arm`: 开始录制音频到片段中(需要先按`rec`键使其亮起)
         * `clip stop`: 停止音轨上播放的片段. 
     * 编辑
@@ -362,8 +385,18 @@
         * 步进序列(`step seq`): 每个pad代表一拍, 演奏时当前拍对应的pad会高亮. 
             * 
     * `load`
+    * `cue mix`: 这个旋钮可调节节拍器声音的大小. 
 
 * 音源
+
+## Ableton live (lite)
+* 安装
+    * 登录akai, 找到个人product页面
+    * 在`Software downloads`出点击`Get Activation Code`生成激活码; 点击`Add Licence`跳转到ableton官网, 输入激活码. 跳转到软件下载页后下载安装. 
+    * 安装后需要激活, 可以在线/离线激活. 
+    * 连接force(参考: https://cdn.inmusicbrands.com/akai/MPCAbletonLiveControlSetupGuide-v1.0.pdf)
+        * 在`https://www.akaipro.com/force`页面中, 找到下方`Downloads & Documents`, 下载`Network MIDI Driver (WIN)`并安装. 
+        * 在ableton中点击`选项` -> `偏好设置` -> `link, tempo & MIDI`, 找到`MIDI`框, `控制界面`选`Akai Force MPC`, 输入选`Akai Network DAW` 
 
 ## 雅马哈电大提琴
 * https://www.nt-instruments.com/cello/yamaha-electric/
