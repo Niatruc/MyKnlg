@@ -1050,7 +1050,7 @@
     str.title() # 返回标题化的字符串（所有单词首字母大写, 其余小写）
     str.istitle() # 如果字符串是标题化的(参见title())则返回true,否则false
     str.join(seq) # 以str作为连接符, 将一个序列中的元素连接成字符串
-    str.split(str='', num) # 以str作为分隔符, 将一个字符串分隔成一个序列, num是被分隔的字符串
+    str.split(str='', num) # 以str作为分隔符, 将一个字符串分隔成一个序列, num是最大分割次数
     str.splitlines(num) # 以行分隔, 返回各行内容作为元素的列表
     str.lower() # 将大写转为小写
     str.upper() # 转换字符串的小写为大写
