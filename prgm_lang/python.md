@@ -262,6 +262,9 @@
 
     # 格式化字符串
     f"his name is {name:20s}" # 变量`name`后的冒号后面是格式字符串
+    f"number is {16:#16x}" # 打印`0x10`. 若指定`X`, 则用大写的格式. 
+    f"number is {16:<#16x}" # 长度16且左对齐. `>`则右对齐, `^`则居中. 
+    f"number is {16:0>16x}" # 长度16且右对齐, 不足长度的部分用0填充. 
 
     # 多行字符串
     s = """
@@ -1359,11 +1362,102 @@
     logger.info('记录一条日志')
 ```
 
-## `.`
-```py
+## `pytest`
+* 参考: 
+    * [Pytest 使用手册](https://learning-pytest.readthedocs.io/zh/latest/index.html)
+    * [一篇文章为你揭秘pytest的基本用法](https://cloud.tencent.com/developer/article/1798234)
+* 要点
+    * 查找策略: pytest 会递归查找当前目录下所有以 `test` 开始或结尾的 Python 脚本, 并执行文件内的所有以 `test` 开始或结束的函数和方法. 
+* 命令行参数
+    * 用法: 
+        * `pytest test.py::test_func1`: 仅测试`test_func1`
+    * 命令行参数
+        * `-k <python表达式>`: 
+            * `-k test_method or test_other`: 测试名称中包含`test_method`或`test_other`的函数. 
+        * `-m my_mark`: 测试带有`my_mark`标记的函数. 可以使用`and`, `or`等. 
+            
+        * `-s`/`--capture=no`: 将标准输出打印出来. (这样`print`打印的东西才能显示出来)
+        * `--setup-show`: 在执行测试用例时显示fixture的setup. 
+        * ``: 
+* 基本用法
+    ```py
+        def test_passing():
+            assert (1, 2, 3) == (1, 2, 3)
+            
+        @pytest.mark.my_mark # 标记
+        def test_func_mark():
+            assert 1 == 1
 
-```
+        ##############################################################
+        @pytest.fixture()
+        def postcode():
+            return '010'
 
+        def test_postcode(postcode): # 以参数的形式使用fixture. `postcode`得到的是上面`postcode`函数的返回值
+            assert postcode == '010'
+
+        ##############################################################
+        @pytest.fixture(scope='session') # 表示db函数在整个会话中只执行一次
+        def db():
+            print('Connection successful')
+
+            yield 123
+
+            print('Connection closed')
+
+        def test_1(db): # `db`得到的是上面`db`函数的yield的值
+            assert db == 123
+            print("asdfasdfasdf")
+
+        ##############################################################
+        @pytest.fixture()
+        def fixture_func(request):
+            print(f'fixture_func: {request.param}')
+            return  request.param
+
+        @pytest.mark.parametrize('fixture_func',[1, 2, 30] ,indirect=True) # indirect=True 声明`fixture_func`是个函数
+        def test_2(fixture_func):
+            print(f'a: {fixture_func}')
+            assert fixture_func < 10
+    ```
+* 内置标记: 
+    * `@pytest.mark.skip(reason='out-of-date api')`
+    * `@pytest.mark.skipif(conn.__version__ < '0.2.0', reason='not supported until v0.2.0')`
+    * `@pytest.mark.xfail(gen.__version__ < '0.2.0', reason='not supported until v0.2.0')`: 预见错误. 当函数出错时, 不会直接跳过, 而是提示. 
+    * 参数化: 
+        * `@pytest.mark.parametrize('passwd', ['123456', 'abcdefdfs', 'as52345fasdf4'])`: 会用二参的列表中每个值设置被测函数的`passwd`参数(故这里会测试3次). 
+        * `@pytest.mark.parametrize('user, passwd', [('jack', 'abcdefgh'), ('tom', 'a123456a')])`: 多参数的情况
+            * 可使用`ids`参数, 为每个测试用例指定id: `ids=('id-1','id-2','id-3')`
+        * `@pytest.mark.parametrize('user, passwd', [pytest.param('jack', 'abcdefgh', id='User<Jack>'), pytest.param('tom', 'a123456a', id='User<Tom>')])`
+        ```py
+            # 像这样可以产生4中参数组合
+            @pytest.mark.parametrize('a', [1, 2])
+            @pytest.mark.parametrize('b', [1, 2])
+            def test_ddt03(a,b):
+                print(f'数据组合 a:{a}, b:{b}')
+        ```
+* `fixture`: pytest会在执行测试前调用`fixture`修饰的函数. 用于预处理和后处理. 
+    * 通过`scope`参数声明作用域, 可选项有: 
+        * `function`: 函数级, 每个测试函数都会执行一次固件. 
+        * `class`: 类级别, 每个测试类执行一次, 所有方法都可以使用. 
+        * `module`: 模块级, 每个模块执行一次, 模块内函数和方法都可使用. 
+        * `session`: 会话级, 一次测试只执行一次, 所有被找到的函数和方法都可用. 
+    * `autouse='true'`: 可让所有测试用例都使用该fixture. 
+* `setup`和`teardown`函数的执行顺序: `setup_module` -> `setup_function` -> `teardown_function` -> `setup_class` -> `setup_method` -> `setup` -> `teardown` -> `teardown_method` -> `teardown_class` -> `teardown_module`
+* `pytest.ini`文件: 
+    ```ini
+        [pytest]
+        pythonpath = .. ; 指定模块搜索目录
+
+        ; 注册自定义标记
+        markers =
+            login   : 'marks tests as login'
+            logout  : 'marks tests as logout'
+            success : 'marks tests as success'
+            failed  : 'marks tests as failed'
+        
+        addopts = --strict
+    ```
 ## 其它
 * `atexit.register(fun,args,args2..)`: 注册函数func, 在解析器退出前调用该函数
 
