@@ -124,6 +124,12 @@
                         2. 在打包后的程序运行前, 在它的工作目录下创建软链接指向`qiling`目录. 
                     * 方法二:
                         * 修改python程序, 使用`sys._MEIPASS`获取解压生成的临时目录, 然后同上所述建立软链接. 
+* pyconcrete
+    * 下载: https://github.com/Falldog/pyconcrete
+    * 安装
+        * `pip install . --no-cache-dir --config-settings=setup-args="-Dpassphrase=<自定义密码>"`
+    * 使用
+        * 加密所有py文件为pye文件: `pyecli compile --pye -s=<your py module dir>`
 # 文档
 ## sphinx
 * 参考
@@ -795,6 +801,7 @@
             spec.loader.exec_module(foo)
             foo.MyClass()
         ```
+    * 更新已存在的对象内部的方法: 如果更新了一个类, 可以通过`inst.__class__ = MyClass`来让对象使用新的方法. 
     * 定义一个无文件的模块: 
         ```py
             import types

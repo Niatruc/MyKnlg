@@ -32,4 +32,7 @@
 * 导入Safetensors文件
 
 # JAX
-        
+
+# LangChain
+* 参考
+    * [LangChain与Ollama：重塑开发者的文本分析之旅](https://zhuanlan.zhihu.com/p/696293498)
