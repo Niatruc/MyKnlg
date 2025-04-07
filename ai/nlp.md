@@ -75,3 +75,6 @@
     * [DeepSeek模型综述：V1 V2 V3 R1-Zero](https://mp.weixin.qq.com/s?__biz=MzI4MDYzNzg4Mw==&mid=2247569706&idx=3&sn=0455b0d6471d7053cd58c5727ddba29e&chksm=ea07adedca445f7521a08aa8faf56146066c1163c76b3a8996746006e0b822d634913dcb1568&scene=27)
     
 ## TinyZero
+
+## gemma
+* `python examples/sampling.py --path_checkpoint=<模型路径>/2b/ --path_tokenizer=<模型路径>/tokenizer.model`
