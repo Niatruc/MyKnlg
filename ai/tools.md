@@ -10,6 +10,8 @@
             * mmap兼容性: 可以使用mmap加载模型, 以实现快速地加载和保存. 
             * 易于使用: 无论使用何种语言, 都可以使用少量代码轻松加载和保存模型, 无需外部库. 
             * 信息完整: 加载模型所需的所有信息都包含在模型文件中, 用户不需要提供任何额外的信息. 这大大简化了模型部署和共享的流程. 
+        * 将gguf转回pytorch用的文件: 
+            * [llama-cpp-torch](https://github.com/chu-tianxiang/llama-cpp-torch)
     * Safetensors:
         * 用于安全地存储张量的新格式, 是pickle格式的替代. 
 # ollama
@@ -30,7 +32,20 @@
     * 执行: `ollama create example -f Modelfile`
     * 执行: `ollama run example`
 * 导入Safetensors文件
-
+* 默认端口: 11434
+* 环境变量
+    * `OLLAMA_MODELS`: 模型文件的存放目录. 
+    * `OLLAMA_HOST`: 默认`127.0.0.1`. 
+    * `OLLAMA_PORT`: 默认11434. 
+    * `OLLAMA_KEEP_ALIVE`: 大模型加载到内存的存活时间, 默认5分钟(5m). 
+    * `OLLAMA_NUM_PARALLEL`: 并发请求处理的数量(默认1). 
+    * `OLLAMA_MAX_QUEUE`: 请求队列长度(默认512). 
+    * `OLLAMA_DEBUG`: 为1则输出调试日志. 
+    * `OLLAMA_MAX_LOADED_MODELS`: 最多同时加载到内存中模型的数量(默认1). 
+    * `OLLAMA_BASE_URL`: 协议, 主机名, 端口号 (默认`http://localhost:11434`)
+    * `OLLAMA_API_KEY`
+* python
+    * 
 # JAX
 
 # LangChain

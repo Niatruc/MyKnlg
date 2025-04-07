@@ -34,6 +34,12 @@
         * 提取式摘要(Extractive summarization)或生成式摘要(Abstractive summarization)
     * 文本问答
         * 问答系统(Question answering system)或自然语言推理(Natural language inference)
+* 推理大模型
+    * 参考
+        * [深入理解推理大模型](https://zhuanlan.zhihu.com/p/21545038149)
+
+
+
 # RAG
 * 参考
     * [检索增强生成（RAG）：从理论到LangChain的实现](https://www.zhihu.com/tardis/bd/art/684572115?source_id=1001)
@@ -58,3 +64,14 @@
 * fastgpt
 * metagpt
 * ragflow
+
+# 各大模型
+## ChatGPT
+* 参考
+    * [ChatGPT白皮书](https://github.com/FreedomIntelligence/Overview-of-ChatGPT/blob/main/ChatGPT%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf)
+
+## Deepseek
+* 参考
+    * [DeepSeek模型综述：V1 V2 V3 R1-Zero](https://mp.weixin.qq.com/s?__biz=MzI4MDYzNzg4Mw==&mid=2247569706&idx=3&sn=0455b0d6471d7053cd58c5727ddba29e&chksm=ea07adedca445f7521a08aa8faf56146066c1163c76b3a8996746006e0b822d634913dcb1568&scene=27)
+    
+## TinyZero

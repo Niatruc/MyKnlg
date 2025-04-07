@@ -35,7 +35,9 @@
             * 编辑`jupyter_notebook_config.py`(没有则新建): 
                 * 添加: `c.NotebookApp.iopub_data_rate_limit = 10000000`(适当加大此值)
 * pip
-    * `install <模块> -i https://pypi.tuna.tsinghua.edu.cn/simple`
+    * `install <模块>`
+        * `-i https://pypi.tuna.tsinghua.edu.cn/simple`
+        * `-U`: 升级
 * conda
     * 命令
         * `conda`
