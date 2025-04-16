@@ -1,5 +1,6 @@
 * 参考
     * [AI 生成内容有哪些上游模型和下游任务？](https://www.zhihu.com/question/574376237)
+    * [手搓大模型：理解并编码自注意力、多头注意力、交叉注意力和因果注意力在大型语言模型中的应用](https://zhuanlan.zhihu.com/p/688206123)
     * [Overview-of-ChatGPT](https://github.com/FreedomIntelligence/Overview-of-ChatGPT/blob/main/ChatGPT%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf)
 
 # Transformer
@@ -43,8 +44,11 @@
 # RAG
 * 参考
     * [检索增强生成（RAG）：从理论到LangChain的实现](https://www.zhihu.com/tardis/bd/art/684572115?source_id=1001)
+    * [使用 DeepSeek R1 和 Ollama 实现本地 RAG 应用](https://github.com/datawhalechina/handy-ollama/blob/main/docs/C5/1.%20Ollama%20%E5%9C%A8%20LangChain%20%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8%20-%20Python%20%E9%9B%86%E6%88%90.md)
 
 # Function Calling（函数调用）
+* 参考
+    * [大模型 tools 调用原理解析](https://meik2333.com/post/llm_tools/)
 * 解决大语言模型的问题: 
     * 没有最新信息
     * 没有真逻辑
@@ -66,6 +70,10 @@
 * ragflow
 
 # 各大模型
+## BERT
+* 参考
+    * [图解BERT](https://github.com/datawhalechina/learn-nlp-with-transformers/blob/main/docs/%E7%AF%87%E7%AB%A02-Transformer%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/2.3-%E5%9B%BE%E8%A7%A3BERT.md)
+
 ## ChatGPT
 * 参考
     * [ChatGPT白皮书](https://github.com/FreedomIntelligence/Overview-of-ChatGPT/blob/main/ChatGPT%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf)

@@ -29,6 +29,12 @@
         > `%autoload 2`
     * 快捷键
         * `shift + tab`: 查看函数描述(参数, 所在文件等)
+    * 打印markdown, latex: 
+        ```py
+            from IPython.display import display, Markdown, Latex
+            display(Markdown('*some markdown* $\phi$'))
+            display(Latex('\phi'))
+        ```
     * 问题
         * `IOPub data rate exceeded`
             * `jupyter --config-dir`: 找到配置文件目录
@@ -432,6 +438,27 @@
 ```
 
 # 函数
+## 协程
+* 参考: [python 异步 async/await（进阶详解）](https://blog.csdn.net/qq_43380180/article/details/111573642)
+
+    ```py
+        import asyncio
+
+        async def func1(): # 用async修饰. 调用`func1`时, 返回的是一个携程对象
+            await asyncio.sleep(1) # 用await表示需要执行完这步操作才能进行下一步操作
+            print('协程1')
+
+        async def func2():
+            print('协程2')
+
+        task = [func1(), func2()]
+        # python3.7引入的新特性, 不用手动创建事件循环
+        asyncio.run(task)
+
+        task1 = asyncio.create_task(func1()) # 协程将很快的自动计划运行
+    ```
+
+* await + 可等待对象: 协程对象, Future, Task对象(IO等待)
 # 模块
 ```py
     import my_module

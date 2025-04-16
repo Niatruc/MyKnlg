@@ -218,6 +218,7 @@
         * the overhead is amortized: 开销被摊销了
     * calibrate: 标定; 校准
     * coalesce: 联合; 合并
+    * elicit: 引起
     * incur: 招致; 引起; 带来(开销等)
         * incur 5 times overhead: 带来5倍多的开销
         * incur a great danger to

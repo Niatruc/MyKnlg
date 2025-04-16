@@ -2,7 +2,9 @@
     * pickle
         * pytorch使用
     * gguf(GPT-Generated Unified Format)
-        * 参考: [一文搞懂大模型文件存储格式新宠GGUF](https://zhuanlan.zhihu.com/p/848013326)
+        * 参考: 
+            * [一文搞懂大模型文件存储格式新宠GGUF](https://zhuanlan.zhihu.com/p/848013326)
+            * [如何加载 GGUF 模型（分片/Shared/Split/00001-of-0000... GGUF 文件的加载解决方法）](https://zhuanlan.zhihu.com/p/853454088)
         * 由 Georgi Gerganov(llama.cpp的创始人)定义发布的一种大模型文件格式, 继承自其前身 GGML
         * 特性
             * 单文件部署: 它们可以轻松分发和加载, 并且不需要任何外部文件来获取附加信息. 
@@ -69,7 +71,7 @@
     * `OLLAMA_DEBUG`: 为1则输出调试日志. 
     * `OLLAMA_MAX_LOADED_MODELS`: 最多同时加载到内存中模型的数量(默认1). 
     * `OLLAMA_BASE_URL`: 协议, 主机名, 端口号 (默认`http://localhost:11434`)
-    * `OLLAMA_API_KEY`
+    * `OLLAMA_API_KEY`: 形如`sk-11223344qwer`
 * python
     * 参考
         * [ollama-python](https://github.com/ollama/ollama-python)
@@ -78,7 +80,15 @@
 # LangChain
 * 参考
     * [LangChain与Ollama：重塑开发者的文本分析之旅](https://zhuanlan.zhihu.com/p/696293498)
+    * [LangChain 中文入门教程](https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide)
 
+
+# OpenManus
+* 参考
+    * [通用型AI智能体Manus分析以及首个云平台自行搭建OpenManus](https://blog.csdn.net/lovely_yoshino/article/details/146094945)
+    * [OpenManus 保姆级入门指南](https://blog.csdn.net/A79800/article/details/146177999)
+* 要素:
+    * 要求使用的模型支持`tools`
 
 # tensorflow
 * 注
