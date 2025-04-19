@@ -213,18 +213,18 @@
 # 学术论文词汇积累
 * 动词
     * accommodate: 容纳
-    * ameliorate: 改善; 改良
+    * ameliorate [əˈmiːliəreɪt]: 改善; 改良
     * amortize: 分摊; 分期偿还
         * the overhead is amortized: 开销被摊销了
     * calibrate: 标定; 校准
     * coalesce: 联合; 合并
-    * elicit: 引起
+    * elicit [iˈlɪsɪt]: 引起
     * incur: 招致; 引起; 带来(开销等)
         * incur 5 times overhead: 带来5倍多的开销
         * incur a great danger to
     * leverage: 利用(现有资源或技术)
-    * retrofit: 翻新
-    * saturate: 使饱和
+    * retrofit [ˈretroʊfɪt]: 翻新
+    * saturate [ˈsætʃəreɪt]: 使饱和
     * strain: 耗尽
     * suffice: 足以
         * this suffices: 这就够了
@@ -288,6 +288,7 @@
 * 名词
     * code audit: 代码审计
     * Code Caves: 可执行代码洞, 即计算机程序或二进制文件中通常未使用或包含未使用指令的可执行代码区域. 
+    * Commercial-off-the-shelf(COTS): 商用现成品或技术. 指可以采购到的具有开放式标准定义的接口的软件或硬件产品, 可以节省成本和时间. 
     * commodity hardware: 商用硬件
         * 与之对应的是: custom hardware, proprietary hardware (专用硬件), bespoke hardware (订制硬件)
     * dangling pointer: 悬挂指针

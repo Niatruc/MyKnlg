@@ -333,6 +333,17 @@
     integer_value = 1024
     big_endian_bytes = integer_value.to_bytes(2, 'big')  #=> b'\x04\x00'
     iv = int.from_bytes(big_endian_bytes, 'big')
+
+    # 将超大整数转字节数据
+    def safe_to_bytes(num, byteorder='big', signed=False):
+        # 自动计算字节长度
+        if num == 0:
+            return b'\x00'  # 处理零的特殊情况
+        byte_length = (num.bit_length() + 7 + signed) // 8  # 有符号数需+1
+        return num.to_bytes(byte_length, byteorder, signed=signed)
+    
+    # 字节数据倒转
+    bytes(reversed(b"1234")) # b"4321"
 ```
 
 ## 列表
