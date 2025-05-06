@@ -44,6 +44,29 @@
     * `install <模块>`
         * `-i https://pypi.tuna.tsinghua.edu.cn/simple`
         * `-U`: 升级
+    * 通过python代码列出环境中的pip包: 
+        * 使用`pkg_resources`
+            ```py
+                import pkg_resources
+
+                # 列出所有已安装的包及其版本
+                installed_packages = [(d.project_name, d.version) for d in pkg_resources.working_set]
+
+                # 格式化输出
+                for package in installed_packages:
+                    print(f"{package[0]}=={package[1]}")
+            ```
+        * 使用 pip 内部API (可能有兼容性问题)
+            ```py
+                from pip._internal.operations import freeze
+
+                # 生成包列表（格式：包名==版本）
+                packages = freeze.freeze()
+
+                # 输出
+                for pkg in packages:
+                    print(pkg)
+            ```
 * conda
     * 命令
         * `conda`

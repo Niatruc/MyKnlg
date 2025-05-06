@@ -59,11 +59,14 @@
     4. 执行函数调用
     5. 将函数结果返回给语言模型, 模型处理完数据并以自然语言答复用户. 
 
+# CoT(Chain of Thought)
+* 参考
+    * [一文读懂：思维链 CoT（Chain of Thought）](https://zhuanlan.zhihu.com/p/670907685)
 ## 解决方案
 * anythingllm
 * maxkb
 * langchainchatchat
-* qanything
+* qanything33
 * llamaindex
 * fastgpt
 * metagpt

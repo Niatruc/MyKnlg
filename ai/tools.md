@@ -29,7 +29,15 @@
 # huggingface
 * `pip install huggingface_hub`
 * token: 命令行运行`huggingface-cli.exe login`, 按提示输入在huggingface网站上创建的token. 
+* 下载模型
+    * 方式一
+        ```sh
+            # zjunlp/knowlm-13b-ie 是模型名称
+            huggingface-cli download --resume-download --local-dir-use-symlinks False zjunlp/knowlm-13b-ie --local-dir D:\Code\KnowLM\knowlm-13b-ie
 
+            # 若需要token
+            huggingface-cli download --resume-download zjunlp/knowlm-13b-ie --local-dir D:\Code\KnowLM\knowlm-13b-ie --local-dir-use-symlinks False --token hf_*****
+        ```
 ```py
     from huggingface_hub import snapshot_download
 
