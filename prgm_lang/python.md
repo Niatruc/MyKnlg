@@ -533,7 +533,19 @@
     * 是用来解决多重继承问题的
     * `super(type[, object-or-type])`: `type`是父类, `object-or-type`一般是`self`
     * 在子类的函数中, 调用父类方法(如, `f1`), 需要这么写: `super().f1()`
+* 抽象基类
+    ```py
+        from abc import ABCMeta, abstractmethod
 
+        class IStream(metaclass=ABCMeta):
+            @abstractmethod
+            def read(self, maxbytes=-1):
+                pass
+
+            @abstractmethod
+            def write(self, data):
+                pass
+    ```
 
 # 元编程
 * 内省
