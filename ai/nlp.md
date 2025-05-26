@@ -62,6 +62,12 @@
 # CoT(Chain of Thought)
 * 参考
     * [一文读懂：思维链 CoT（Chain of Thought）](https://zhuanlan.zhihu.com/p/670907685)
+* 要点
+    * CoT 应当被用于 20B 以上参数规模的模型之中。
+    * 当大模型的训练数据表现出了变量的局部簇结构（Local Clusters of Variables）时，CoT 将会展现极好的效果。
+    * 当给予大模型的示例之间彼此之间互相区分并不相同时，也有助于提升 CoT 的性能。
+* Zero-shot CoT: 通过特定的提示文本激发模型在没有示例的情况下生成推理链条
+* Auto CoT: 使用前者零样本生成的推理链条，并结合示例选择策略，通过少样本学习的方式生成推理链条。但自动的质量一般没有人工的好，导致大模型幻觉问题严重。
 ## 解决方案
 * anythingllm
 * maxkb
@@ -89,3 +95,8 @@
 
 ## gemma
 * `python examples/sampling.py --path_checkpoint=<模型路径>/2b/ --path_tokenizer=<模型路径>/tokenizer.model`
+
+## Phi
+* 参考
+    * https://huggingface.co/microsoft/Phi-4-mini-instruct
+    * [Function Calling Sample](https://github.com/microsoft/PhiCookBook/blob/main/md/02.Application/07.FunctionCalling/Phi4/Ollama/ollama_functioncalling.ipynb)

@@ -32,8 +32,8 @@
 * 下载模型
     * 方式一
         ```sh
-            # zjunlp/knowlm-13b-ie 是模型名称
-            huggingface-cli download --resume-download --local-dir-use-symlinks False zjunlp/knowlm-13b-ie --local-dir D:\Code\KnowLM\knowlm-13b-ie
+            # microsoft/Phi-4-mini-instruct 是模型名称
+            huggingface-cli download --resume-download --local-dir-use-symlinks False microsoft/Phi-4-mini-instruct --local-dir E:\known_models\microsoft\Phi-4-mini-instruct
 
             # 若需要token
             huggingface-cli download --resume-download zjunlp/knowlm-13b-ie --local-dir D:\Code\KnowLM\knowlm-13b-ie --local-dir-use-symlinks False --token hf_*****
@@ -89,7 +89,7 @@
 * 参考
     * [LangChain与Ollama：重塑开发者的文本分析之旅](https://zhuanlan.zhihu.com/p/696293498)
     * [LangChain 中文入门教程](https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide)
-
+    * [langchain 学习笔记-FunctionCalling三种方式](https://blog.csdn.net/yaojiawan/article/details/137405452)
 
 # OpenManus
 * 参考
@@ -97,6 +97,10 @@
     * [OpenManus 保姆级入门指南](https://blog.csdn.net/A79800/article/details/146177999)
 * 要素:
     * 要求使用的模型支持`tools`
+
+# MCP
+* 参考
+    * https://github.com/modelcontextprotocol/python-sdk
 
 # tensorflow
 * 注
@@ -130,6 +134,7 @@
     * https://pytorch.org/get-started/locally/
     * 从上述链接中按提示选好环境, 复制所给pip命令, 安装pytorch
         * `cuda 12.1`对应的pytorch在安装时会带有`cudart64_12.dll`, `cudnn_cnn_train64_8.dll`等动态库(在`Lib\site-packages\torch\lib`下)
+    * 若要用conda安装cudatoolkit, 可参考: https://anaconda.org/nvidia/cuda-toolkit
 
 * 使用
     ```py
@@ -142,4 +147,43 @@
 
         torch.cuda.is_available() # 判断cuda是否可用
         torch.cuda.device_count() # 可用cuda的设备数量
+    ```
+
+* 错误
+    * `torch not compiled with cuda enabled`
+        * `nvcc -v`看cuda版本
+        * 以cuda 11.8为例: `pip3 install torch torchvision torchaudio --no-cache -f https://mirrors.aliyun.com/pytorch-wheels/cu118`
+# transformer
+* 参考
+    * [Hugging Face教程 - 2、使用transformers](https://zhuanlan.zhihu.com/p/558570740)
+* 分词
+    ```py
+        from transformers import AutoTokenizer
+    ​
+        checkpoint = "distilbert-base-uncased-finetuned-sst-2-english"
+        tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+        # 调用save_pretrained则可以保存分词器
+
+        raw_inputs = [
+            "how are you hery ",
+            "I've been waiting for a HuggingFace course my whole life.",
+            "I hate this so much!",
+        ]
+        inputs = tokenizer(raw_inputs, padding=True, truncation=True, return_tensors="pt")
+        print(inputs)
+    ```
+
+    ```py
+        # 分词
+        token_list = tokenizer.tokenize(raw_inputs[0]) #=> ['how', 'are', 'you', 'her', '##y']
+
+        # 得到各分词的id(根据字典)
+        token_id_list = tokenizer.convert_tokens_to_ids(token_list) #=> [2129, 2024, 2017, 2014, 2100]
+
+        # 将id转为分词
+        tokenizer.convert_ids_to_tokens(token_id_list) #=> ['how', 'are', 'you', 'her', '##y']
+
+        # 将分词组合为句子
+        tokenizer.convert_tokens_to_string(token_list) #=> 'how are you hery'
+
     ```
