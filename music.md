@@ -307,7 +307,7 @@
         * https://www.bilibili.com/read/cv7594227
         * 环地干扰噪声: 有多台接地功放设备时, 就可能形成环路, 会有噪声电压. 这时就需要断开接地端. 
     * 均衡输出(L是Mono输出): 连studio gear, 混响器(mixer), PA(功放), FRFR扬声. 
-    * 耳机接口: 连耳机, 监听用. `
+    * 耳机接口: 连耳机, 监听用. 
     * USB(Type C): 可以连Mac或Windows电脑, GP-200可作为一个包含DI(直接输入), Re-amping, MIDI功能的高质量音频接口
     * 长按`TAP`进入调音器. 
 

@@ -97,6 +97,7 @@
         * make analogy between: 将...比喻为...
     * anarchy: 无政府状态; 混乱
     * apprentice: 学徒; 徒弟
+    * arbitration: 仲裁
     * camouflage: 伪装
     * catharsis: 宣泄; 净化
     * caveat: 警告, 告诫
@@ -183,6 +184,7 @@
     * laboriously: 费力地
     * lethal: 致命的
     * mandatory: 强制的; 法定的; 义务的
+    * miscellaneous: 各种各样的
     * mnemonic: 记忆的; 记忆术的
         * n. 助记符号
         * mnemonic address: 助记地址
