@@ -81,6 +81,7 @@
     * resort: 求助; 诉诸
     * revive: 复原
     * saute: 炒
+    * scrutinize: 仔细检查
     * sidestep: 规避(问题)
     * snigger: 窃笑
     * stall: 抛锚, 熄火; 暂缓
@@ -128,6 +129,7 @@
     * pros and cons: 优点与缺点
     * realm: 领域
         * academic realm
+    * repercussion: (间接的)影响; 反响; 恶果;
     * scourge: 祸害; 天灾
     * sanitization: 消毒; 净化
     * sedative: 镇静剂
@@ -192,6 +194,7 @@
         * mnemonic method: 助记方法
         * mnemonic chant: 口诀
     * monetary: 货币的
+    * nefarious: 罪恶的
     * negligible: 可以忽略不计的
     * nominally: 名义上
     * obligatory(/əˈblɪɡətri/): 强制性的
