@@ -1,3 +1,6 @@
+* 参考
+    * [GDScript 零基础图文入门](https://reimenn.github.io/MyGDSciprtBook/GDScript.html)
+
 * 要点
     * ​​开发语言​​: GDScript（类 Python）、C#、C++
     * ​​开源协议: MIT 许可证
