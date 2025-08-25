@@ -7,7 +7,7 @@
     * pip安装
 * vscode
     * 配置notebook
-        * 在`setting.json`中添加配置: 
+        * 在`settings.json`中添加配置: 
             ```json
                 "python.venvPath": "<包含venv环境的目录>", 
                 "python.condaPath": "D:\\miniconda3\\condabin\\conda.bat",
@@ -953,7 +953,6 @@
     os.environ # 一个字典, 包含环境变量
 
     os.remove() # 删除文件 
-    os.unlink() # 删除文件 
     os.rename() # 重命名文件 
     os.listdir() # 列出指定目录下所有文件 
     os.chdir() # 改变当前工作目录
@@ -966,7 +965,16 @@
     os.chmod(file) # 修改文件权限
     os.utime(file) # 修改文件时间戳
     os.name(file) # 获取操作系统标识
-    os.symlink(source, link_name) # 创建软链接. 注意`source`才是目标文件
+    os.unlink(link_name) # 删除符号链接文件 
+    os.symlink(source, link_name) # 创建符号链接. 注意`source`才是目标文件
+    os.readlink(link_name) # 获取符号链接指向的文件. 返回源文件路径
+
+    for root, dirs, files in os.walk(dir_name): # 深度遍历
+        # root: 当前文件夹路径
+        # dirs: root目录下的子目录路径列表
+        # files: root目录下的文件路径列表
+        pass
+
     os.system() # 执行操作系统命令
     os.execvp() # 启动一个新进程
     os.fork() # 获取父进程ID, 在子进程返回中返回0

@@ -90,6 +90,11 @@
     * [LangChain与Ollama：重塑开发者的文本分析之旅](https://zhuanlan.zhihu.com/p/696293498)
     * [LangChain 中文入门教程](https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide)
     * [langchain 学习笔记-FunctionCalling三种方式](https://blog.csdn.net/yaojiawan/article/details/137405452)
+* 安装
+    * pip安装:
+        * langchain
+        * langchain-community
+        * langchain-chroma
 
 # OpenManus
 * 参考
