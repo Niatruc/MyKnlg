@@ -636,9 +636,9 @@
     ```py
         def __getattribute__(self, name):
             def _missing(*args, **kwargs):
-                print "A missing method was called."
-                print "The object was %r, the method was %r. " % (self, name)
-                print "It was called with %r and %r as arguments" % (args, kwargs)
+                print("A missing method was called.")
+                print("The object was %r, the method was %r. " % (self, name))
+                print("It was called with %r and %r as arguments" % (args, kwargs))
             return _missing
     ```
 * 元类
@@ -988,7 +988,7 @@
     os.path.splitext(filename) # 将文件路径和文件扩展名分割成一个元组
     os.path.dirname(filename) # 返回文件路径的目录部分
     os.path.basename(filename) # 返回文件路径的文件名部分
-    os.path.join(dirname,basename) # 将文件路径和文件名凑成完整文件路径
+    os.path.join(dirname,basename) # 将文件路径和文件名凑成完整文件路径 # 注意: 如果basename开头为`/`, 则dirname会被丢弃
     os.path.abspath(name) # 获得绝对路径
     os.path.splitunc(path) # 把路径分割为挂载点和文件名
     os.path.normpath(path) # 规范path字符串形式

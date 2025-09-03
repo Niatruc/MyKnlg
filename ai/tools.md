@@ -93,8 +93,15 @@
 * 安装
     * pip安装:
         * langchain
+        * langchain-ollama
         * langchain-community
-        * langchain-chroma
+        * langchain-chroma: 注意, 使用python 3.12时, 调用`Chroma.from_documents`会崩溃, 
+
+# 向量数据库
+* chroma
+* faiss
+    * `pip install faiss-cpu`
+    * `pip install faiss-gpu`
 
 # OpenManus
 * 参考
