@@ -238,6 +238,7 @@
 * 名词
     * deviation: 偏差; 违背
     * efficacy: 功效
+    * hallucinations [həˌlusəˈneɪʃənz]: 幻觉，错觉
     * incentive: 激励; 动机
         * (adj): 刺激性的
     * integrity: 完整性
