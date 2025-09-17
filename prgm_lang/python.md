@@ -1626,7 +1626,7 @@
     )
                 
     def task():
-        cur =engine.execute("select * from t_sales where id>%s",(2,))  #engine直接执行
+        cur = engine.execute("select * from t_sales where id>%s",(2,))  #engine直接执行
         result = cur.fetchone() # 取一行
         
         for i in cur: # 遍历
@@ -1645,9 +1645,9 @@
 ### ORM
 ```py
     import datetime
-    from sqlalchemy import create_engine
     from sqlalchemy.ext.declarative import declarative_base
     from sqlalchemy import Column, String, Integer, DateTime, Text
+    from sqlalchemy.orm import sessionmaker, Session
 
     Base = declarative_base()
 
@@ -1705,16 +1705,20 @@
     session.commit()
 
     #*****************查询数据********************
+    # 下面每次查询返回的是`sqlalchemy.engine.row.Row`实例或其列表
     ret = session.query(PurchaseOrder).all()
     ret = session.query(PurchaseOrder).filter(PurchaseOrder.id==2).all()  #包含对象的列表
     ret = session.query(PurchaseOrder).filter(PurchaseOrder.id==2).first() #单个对象
     ret = session.query(PurchaseOrder).filter_by(id=2).all()  #通过列名字的表达式
     ret = session.query(PurchaseOrder).filter_by(id=2).first()
     ret = session.query(PurchaseOrder).filter(text("id<:value and cost>:price")).params(value=6,price=15).order_by(PurchaseOrder.cost).all()
-    ret = session.query(PurchaseOrder).from_statement(text("SELECT * FROM purchase_order WHERE cost>:price")).params(price=40).all()
-    print ret
+    ret = session.query(PurchaseOrder).from_statement(text("SELECT * FROM purchase_order WHERE cost>:price")).params(price=40).all() # 直接使用原生sql语句
+
+    ret = session.query(PurchaseOrder).offset(2).limit(10).all() # 返回第2项(从0开始计数)之后的10条
+
+    # 打印返回数据的每一列
     for i in ret:
-        print i.id, i.cost, i.ctime,i.desc
+        print(i.id, i.cost, i.ctime,i.desc)
         
     ret2 = session.query(PurchaseOrder.id,PurchaseOrder.cost.label('totalcost')).all()  #只查询两列, ret2为列表
     #print ret2
@@ -1732,6 +1736,15 @@
     * `upgrade head|<版本>`: 迁移到数据库
     * `downgrade head|<版本>`: 降级
     * `history`: 列出迁移版本及信息
+* `sqlacodegen`: 用于为数据库表生成类
+    ```sh
+        sqlacodegen postgresql:///some_local_db
+        sqlacodegen --generator tables mysql+pymysql://user:password@localhost/dbname
+        sqlacodegen --generator dataclasses sqlite:///database.db
+        # --engine-arg values are parsed with ast.literal_eval
+        sqlacodegen oracle+oracledb://user:pass@127.0.0.1:1521/XE --engine-arg thick_mode=True
+        sqlacodegen oracle+oracledb://user:pass@127.0.0.1:1521/XE --engine-arg thick_mode=True --engine-arg connect_args='{"user": "user", "dsn": "..."}'
+    ```
 ## fastapi
 * 问题
     * 
