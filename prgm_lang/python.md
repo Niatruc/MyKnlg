@@ -943,6 +943,36 @@
         # shm.unlink()
     ```
 
+## 多线程
+    ```py
+        import threading
+        import time
+
+        # 为线程定义一个函数
+        def print_time( threadName, delay):
+            count = 0
+            while count < 5:
+                time.sleep(delay)
+                count += 1
+                print ("%s: %s" % ( threadName, time.ctime(time.time()) ))
+
+        threading.start_new_thread( print_time, ("Thread-1", 1, ) )
+
+        # 或者: 
+        # 创建线程
+        thread = threading.Thread(target=print_time, args=("Thread-1", 1, ))
+
+        # 启动线程
+        thread.start()
+
+        # 等待线程结束
+        thread.join()
+    ```
+* 线程锁
+    * `threadLock = threading.Lock()`
+    * `threadLock.acquire()`: 获取
+    * `threadLock.release()`: 释放
+
 # 常用模块
 * 参考: 
     * https://blog.csdn.net/qq_40674583/article/details/81940974
@@ -1236,7 +1266,7 @@
     re.findall(r"\s*([^\s]+),\s*([^\s]+)\s*", " r, 1   s,2  t,  3 ") #=> [('r', '1'), ('s', '2'), ('t', '3')]
 
     # `sub`示例: 使用`\1`表示捕获的第一个分组
-    re.sub("(<|>)", r"\\\1", "<a> [<b> (64)]")
+    re.sub("(<|>)", r"\\\1", "<a> [<b> (64)]") # 结果是在字符串中所有尖括号前加上反斜杠
 ```
 
 ## `struct`
@@ -1646,7 +1676,7 @@
 ```py
     import datetime
     from sqlalchemy.ext.declarative import declarative_base
-    from sqlalchemy import Column, String, Integer, DateTime, Text
+    from sqlalchemy import Column, String, Integer, DateTime, Text, update
     from sqlalchemy.orm import sessionmaker, Session
 
     Base = declarative_base()
@@ -1689,7 +1719,9 @@
     session.query(PurchaseOrder).filter(PurchaseOrder.id==2).update({"cost":PurchaseOrder.cost+40.1},synchronize_session=False)  #synchronize_session用于query在进行delete or update操作时, 对session的同步策略。
 
     # 方法二
-    update(User).where(User.id == 1).values(name='New Name')
+    stmt = update(User).where(User.id == 1).values(name='New Name')
+    str(stmt.compile(engine)) # 可获取update语句
+    session.execute(stmt)
 
     # 方法三
     session.merge(User(id=1, name='New Name'))
@@ -1719,12 +1751,36 @@
     # 打印返回数据的每一列
     for i in ret:
         print(i.id, i.cost, i.ctime,i.desc)
+        print(r._mapping) # 返回一个字典
         
     ret2 = session.query(PurchaseOrder.id,PurchaseOrder.cost.label('totalcost')).all()  #只查询两列, ret2为列表
     #print ret2
 
     #关闭session
     session.close()
+```
+* `Table`
+```py
+    metadata = MetaData()
+    user_table = Table('users', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('name', String),
+        Column('age', Integer)
+    )
+
+    # 查询数据
+    ession.query(user_table).filter(user_table.c.name == 'Alice')
+
+    # 插入数据
+    stmt = users.insert().values(name='Alice', age=30)
+    stmt = insert(users).values(name='Alice', age=30)
+    stmt = insert(users).values({"name": 'Alice', "age": 30})
+
+    # 更新数据
+    stmt = update(user_table).where(user_table.c["id"] == 1).values(name='Alice')
+
+    session.execute(stmt)
+    session.commit()
 ```
 * `alembic`: 用来做OMR模型与数据库的迁移与映射. 需要用pip单独安装. 
     * `init <仓库名>`: 生成一个`<仓库名>`目录和一个`alembic.ini`文件. 
@@ -1745,6 +1801,8 @@
         sqlacodegen oracle+oracledb://user:pass@127.0.0.1:1521/XE --engine-arg thick_mode=True
         sqlacodegen oracle+oracledb://user:pass@127.0.0.1:1521/XE --engine-arg thick_mode=True --engine-arg connect_args='{"user": "user", "dsn": "..."}'
     ```
+
+    * `--tables <表1>,<表2>`: 指定要导出定义的表
 ## fastapi
 * 问题
     * 
