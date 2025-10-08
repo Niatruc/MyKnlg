@@ -95,7 +95,7 @@
         * langchain
         * langchain-ollama
         * langchain-community
-        * langchain-chroma: 注意, 使用python 3.12时, 调用`Chroma.from_documents`会崩溃, 
+        * langchain-chroma: 注意, 使用python 3.12时, 调用`Chroma.from_documents`会崩溃.  
 
 # 向量数据库
 * chroma

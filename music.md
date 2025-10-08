@@ -32,6 +32,7 @@
 
 * 音频
     * [音符与频率对照表](http://www.rhytom.com/tiaolv/2014090713676.html)
+    * 中央C的频率通常约为 `261.6` 赫兹
     * 标准调弦的吉他2弦1品对应钢琴的C4(中央C)
     
 * 调式音阶(mode)
@@ -201,8 +202,8 @@
     * 打击(percussion)
         * 定音鼓(timpani)
         * 大鼓(bass drum)
-        * 小鼓(snare dum)
-        * 钹(concert cymbals)
+        * 小鼓(snare drum)
+        * 钹(cymbal)
         * 锣(tam-tam)
         * 铃鼓(tambourine)
         * 三角铁(triangle)
@@ -210,6 +211,7 @@
         * 木琴(zylophone)
         * 铁琴(vibraphone)
         * 高音铁琴, 钟琴(glockenspiel)
+        * 沙锤(Maraca)
 
 ## 
 ## 吉他
