@@ -260,6 +260,8 @@
     * aggregate: 总计的
         * v. 合计
         * n. 总数
+    * canonical: 标准的, 规范的
+        * ~ format: 标准格式
     * consecutive: 连续的
     * erratic: 不规则的
         * erratically

@@ -51,6 +51,8 @@
     * `install <模块>`
         * `-i https://pypi.tuna.tsinghua.edu.cn/simple`
         * `-U`: 升级
+    * `download <模块>`: 下载模块及所依赖的包
+        * 之后可离线安装: `pip install --no-index --find-links=<下载目录>/ <模块>`
     * 通过python代码列出环境中的pip包: 
         * 使用`pkg_resources`
             ```py
@@ -1590,45 +1592,45 @@
     * [ssl --- 套接字对象的 TLS/SSL 包装器](https://docs.python.org/zh-cn/3.13/library/ssl.html)
 * `ssl.create_default_context(purpose=Purpose.SERVER_AUTH, cafile=None, capath=None, cadata=None)`
     * 会加载系统的证书
-```py
-    import socket
-    import ssl
+    ```py
+        import socket
+        import ssl
 
-    hostname = 'www.python.org'
-    context = ssl.create_default_context()
+        hostname = 'www.python.org'
+        context = ssl.create_default_context()
 
-    with socket.create_connection((hostname, 443)) as sock:
-        with context.wrap_socket(sock, server_hostname=hostname) as ssock:
-            print(ssock.version())
-```
+        with socket.create_connection((hostname, 443)) as sock:
+            with context.wrap_socket(sock, server_hostname=hostname) as ssock:
+                print(ssock.version())
+    ```
 * 使用自己的证书
-```py
-    #################################
-    # 客户端
-    #################################
+    ```py
+        #################################
+        # 客户端
+        #################################
 
-    hostname = 'www.python.org'
-    # PROTOCOL_TLS_CLIENT 需要有效的证书链和主机名
-    context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-    context.load_verify_locations('path/to/cabundle.pem')
+        hostname = 'www.python.org'
+        # PROTOCOL_TLS_CLIENT 需要有效的证书链和主机名
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        context.load_verify_locations('path/to/cabundle.pem')
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
-        with context.wrap_socket(sock, server_hostname=hostname) as ssock:
-            print(ssock.version())
-    
-    #################################
-    # 服务端
-    #################################
-    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    context.load_cert_chain('/path/to/certchain.pem', '/path/to/private.key')
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
+            with context.wrap_socket(sock, server_hostname=hostname) as ssock:
+                print(ssock.version())
+        
+        #################################
+        # 服务端
+        #################################
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        context.load_cert_chain('/path/to/certchain.pem', '/path/to/private.key')
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
-        sock.bind(('127.0.0.1', 8443))
-        sock.listen(5)
-        with context.wrap_socket(sock, server_side=True) as ssock:
-            conn, addr = ssock.accept()
-            ...
-```
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
+            sock.bind(('127.0.0.1', 8443))
+            sock.listen(5)
+            with context.wrap_socket(sock, server_side=True) as ssock:
+                conn, addr = ssock.accept()
+                ...
+    ```
 * 方法: 
     * `ssl.RAND_bytes(num)`: 生成num个字节组成的高强度伪随机数据
     * `ssl.RAND_add(bytes, entropy)`: 将给定字节数据混合到SSL 伪随机数生成器中. 参数 entropy (浮点数) 是字符串中包含的熵值的下限 (因此可以始终使用 0.0). 
