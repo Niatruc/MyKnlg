@@ -406,7 +406,15 @@
     list(set(a1).union(set(a2))) # 并集
     list(set(a1).difference(set(a2))) # 差集
 
+    # 注: 不能在正向遍历列表的时候删除元素, 因为会有索引错误的问题
+    # 替代方法1: 创建新列表, 保留符合条件的元素
+    a1 = [x % x for x in a1 if x > 0]
+    # 替代方法2: 反向遍历列表
+    for i in range(len(a1) - 1, -1, -1):
+    # 替代方法3: filter
+    list(filter(lambda x: x > 0, a1))
 ```
+* `range(start, stop[, step])`: 生成一个整数数列, 从`start`开始, 到`stop`结束(不包含`stop`)
 * `yield`: 生成器
     ```py
         def f():
