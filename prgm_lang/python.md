@@ -119,9 +119,10 @@
                 -p <目录> # 指定import时查找的目录(类似于PYTHONPATH)
                 --workpath <目录> # 指定临时文件存放目录(默认是`./build`)
                 --distpath <目录> # 指定打包程序存放目录(默认是`./dist`)
-                --hidden-import <模块名> # hiddenimport是指那些不是通过import导入模块的操作(比如)
+                --hidden-import <模块名> # 使指定模块的import操作不可见
                 --runtime-tmpdir <目录> # 配合`-F`使用, 指定运行时解压依赖文件的临时路径. 若未指定, 则为`/tmp/_MEI*`
                 -s # 去除符号表
+                --key 123456 # 加密(在v6之后已移除)
                 main.py # 目标文件
 
             # 也可以直接使用生成的spec文件: 
@@ -136,7 +137,7 @@
                 * 原因: 有些模块会加载动态库
                 * 解决方法(以`unicorn`等为例): 
                     * 方法一: 加选项`--collect-all unicorn`
-                    * 方法二: 可以修改spec文件: 
+                    * 方法二: 可以修改spec文件(`pyconcrete`生成此文件, 里面是python代码, 记录了`pyconcrete`各命令行参数的值), 然后执行`pyinstaller xxx.spec`: 
                         ```py
                             from PyInstaller.utils.hooks import collect_dynamic_libs # 导入这个函数
 
@@ -164,12 +165,19 @@
                         2. 在打包后的程序运行前, 在它的工作目录下创建软链接指向`qiling`目录. 
                     * 方法二:
                         * 修改python程序, 使用`sys._MEIPASS`获取解压生成的临时目录, 然后同上所述建立软链接. 
+* staticx
+    * 用法: `staticx <pyinstaller打包的程序> <新程序>`
+    * 问题
+        * [Unsupported RPATH/RUNPATH](https://staticx.readthedocs.io/en/latest/rpath.html)
 * pyconcrete
     * 下载: https://github.com/Falldog/pyconcrete
     * 安装
         * `pip install . --no-cache-dir --config-settings=setup-args="-Dpassphrase=<自定义密码>"`
+        * 目前只能在线安装, 离线安装问题未解决. 
+        * 安装完成后, 将python根目录的bin目录下的`pyecli`和`pyconcrete`拷贝出来, 放到自己的python环境里. 
+        * `patchelf --set-rpath <python根目录>/lib $(which pyconcrete)`(对`pyecli`同理), 使程序可以找到`libpython3.8.so.1.0`. 
     * 使用
-        * 加密所有py文件为pye文件: `pyecli compile --pye -s=<your py module dir>`
+        * 加密所有py文件为pye文件: `pyecli compile --pye -s=<python程序目录>`. 将为所有python文件生成`.pye`文件. 
 # 文档
 ## sphinx
 * 参考
@@ -893,6 +901,7 @@
             spec.loader.exec_module(foo)
             foo.MyClass()
         ```
+    * 查看模块路径: `importlib.util.find_spec("模块名")`
     * 更新已存在的对象内部的方法: 如果更新了一个类, 可以通过`inst.__class__ = MyClass`来让对象使用新的方法. 
     * 定义一个无文件的模块: 
         ```py
