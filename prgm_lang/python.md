@@ -401,6 +401,10 @@
     for _ in range(8):
         res = next(it) # 通过迭代器获取下一个
         print(res)
+    
+    # 反向遍历
+    for item in reversed(a1):
+        print(item)
 
     # 利用迭代器, 获取列表中第一个符合条件的值
     next((i for i in [1,2,3] if i > 2), -1)
