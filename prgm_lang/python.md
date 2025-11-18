@@ -69,7 +69,7 @@
             ```py
                 from pip._internal.operations import freeze
 
-                # 生成包列表（格式：包名==版本）
+                # 生成包列表(格式：包名==版本)
                 packages = freeze.freeze()
 
                 # 输出
@@ -502,7 +502,7 @@
 
 # 函数
 ## 协程
-* 参考: [python 异步 async/await（进阶详解）](https://blog.csdn.net/qq_43380180/article/details/111573642)
+* 参考: [python 异步 async/await(进阶详解)](https://blog.csdn.net/qq_43380180/article/details/111573642)
 
     ```py
         import asyncio
@@ -1031,8 +1031,8 @@
     os.system() # 执行操作系统命令
     os.execvp() # 启动一个新进程
     os.fork() # 获取父进程ID, 在子进程返回中返回0
-    os.execvp() # 执行外部程序脚本（Uinx）
-    os.spawn() # 执行外部程序脚本（Windows）
+    os.execvp() # 执行外部程序脚本(Uinx)
+    os.spawn() # 执行外部程序脚本(Windows)
     os.access(path, mode) # 判断文件权限(详细参考cnblogs) #
     os.wait() # (只在unix有效)等待任何一个子进程结束, 返回一个tuple, 包括子进程的进程ID和退出状态信息：一个16位的数字, 低8位是杀死该子进程的信号编号, 而高8位是退出状态(如果信号编号是0), 其中低8位的最高位如果被置位, 则表示产生了一个core文件。
 
@@ -1091,7 +1091,7 @@
     sys.path # 返回模块的搜索路径, 初始化时使用PYTHONPATH环境变量的值 
     sys.modules.keys() # 返回所有已经导入的模块列表
     sys.modules # 返回系统导入的模块字段, key是模块名, value是模块 
-    sys.exc_info() # 获取当前正在处理的异常类,exc_type、exc_value、exc_traceback当前处理的异常详细信息
+    sys.exc_info() # 获取当前正在处理的异常类,exc_type, exc_value, exc_traceback当前处理的异常详细信息
     sys.exit(n) # 退出程序, 正常退出时exit(0)
     sys.hexversion # 获取Python解释程序的版本值, 16进制格式如：0x020403F0
     sys.version # 获取Python解释程序的版本信息
@@ -1200,7 +1200,7 @@
     str.isupper() # 检查字符串是否全是大写, 返回布尔值
     str.isnumeric() # 检查字符串是否只包含数字字符, 返回布尔值
     str.isspace() # 如果str中只包含空格, 则返回true,否则FALSE
-    str.title() # 返回标题化的字符串（所有单词首字母大写, 其余小写）
+    str.title() # 返回标题化的字符串(所有单词首字母大写, 其余小写)
     str.istitle() # 如果字符串是标题化的(参见title())则返回true,否则false
     str.join(seq) # 以str作为连接符, 将一个序列中的元素连接成字符串
     str.split(str='', num) # 以str作为分隔符, 将一个字符串分隔成一个序列, num是最大分割次数
@@ -1229,8 +1229,8 @@
     urllib.pathname2url(path) # 将本地路径转换成url路径
     urllib.url2pathname(path) # 将url路径转换成本地路径
     urllib.urlretrieve(url[,filename[,reporthook[,data]]]) # 下载远程数据到本地
-        # filename: 指定保存到本地的路径（若未指定该, urllib生成一个临时文件保存数据）
-        # reporthook: 回调函数, 当连接上服务器、以及相应的数据块传输完毕的时候会触发该回调
+        # filename: 指定保存到本地的路径(若未指定该, urllib生成一个临时文件保存数据)
+        # reporthook: 回调函数, 当连接上服务器, 以及相应的数据块传输完毕的时候会触发该回调
         # data: 指post到服务器的数据
 
     urllrs = urllib.urlopen(url[,data[,proxies]]) # 抓取网页信息, [data]post数据到Url,proxies设置的代理
@@ -1488,7 +1488,7 @@
             '': {
                 'handlers': ['default', ],  # 这里把上面定义的两个handler都加上, 即log数据既写入文件又打印到屏幕
                 'level': 'DEBUG',  # loggers(第一层日志级别关限制)--->handlers(第二层日志级别关卡限制)
-                'propagate': False,  # 默认为True, 向上（更高level的logger）传递, 通常设置为False即可, 否则会一份日志向上层层传递
+                'propagate': False,  # 默认为True, 向上(更高level的logger)传递, 通常设置为False即可, 否则会一份日志向上层层传递
             },
         },
     }
@@ -1498,7 +1498,7 @@
 ```py
     # test.py
 
-    # logging是一个包, 需要使用其下的config、getLogger
+    # logging是一个包, 需要使用其下的config, getLogger
     from logging import config
     from logging import getLogger
 
@@ -1660,6 +1660,7 @@
 ## 其它
 * `atexit.register(fun,args,args2..)`: 注册函数func, 在解析器退出前调用该函数
 
+# 第三方模块
 ## `SQLAlchemy`
 * 参考: https://www.cnblogs.com/jiangxiaobo/p/12360954.html
 ```py
@@ -1672,10 +1673,10 @@
 
     engine = create_engine(
         "mysql+pymysql://root@127.0.0.1:3306/learningsql?charset=utf8",
-        max_overflow = 0,  #超过连接池大小外最多创建的连接, 为0表示超过5个连接后, 其他连接请求会阻塞 （默认为10）
-        pool_size = 5,    #连接池大小（默认为5）
-        pool_timeout = 30,  #连接线程池中, 没有连接时最多等待的时间, 不设置无连接时直接报错 （默认为30）
-        pool_recycle = -1  #多久之后对线程池中的线程进行一次连接的回收（重置） （默认为-1）
+        max_overflow = 0,  #超过连接池大小外最多创建的连接, 为0表示超过5个连接后, 其他连接请求会阻塞 (默认为10)
+        pool_size = 5,    #连接池大小(默认为5)
+        pool_timeout = 30,  #连接线程池中, 没有连接时最多等待的时间, 不设置无连接时直接报错 (默认为30)
+        pool_recycle = -1  #多久之后对线程池中的线程进行一次连接的回收(重置) (默认为-1)
     )
                 
     def task():
@@ -1830,7 +1831,21 @@
 * 问题
     * 
         * 参考: [解决fastapi访问/docs和/redoc接口文档显示空白或无法加载](https://blog.csdn.net/weixin_43936332/article/details/131020726)
-# PyQt5
+
+## ply
+* 基本信息
+    * `python lex yacc`
+    * 词法分析和语法分析库, 包括lex 和 yacc两个模块
+
+## lark
+* 基本信息
+    * Earley解析器: 可解析所有上下文无关语法. 
+    * LALR(1)解析器: 空间利用率高, 性能好. 
+    * 巴科斯-瑙尔范式(EBNF)
+    * 根据语法自动构建解析树AST
+    
+
+## PyQt5
 * 安装: 用pip安装`PyQt5`和`qt5-tools`. 目前只支持到`python 3.9`(20240619)
 * 工具: 
     * designer: 运行`qt5-tools designer`
