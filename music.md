@@ -212,6 +212,9 @@
         * 铁琴(vibraphone)
         * 高音铁琴, 钟琴(glockenspiel)
         * 沙锤(Maraca)
+        * 嗵鼓(Tom-toms)
+    * 其他
+        * 风琴(organ)
 
 ## 
 ## 吉他
