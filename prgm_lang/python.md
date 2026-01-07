@@ -96,7 +96,8 @@
         * `pip install conda-pack`
         * `conda pack -n my_env -o my_env.tar.gz`: 打包
         * 在另一台机子上解压`my_env.tar.gz`, 将目录拷贝到`miniconda3/envs`目录下. 
-
+        * `source ~/my_env/bin/activate`
+        * `conda unpack`: 修复路径问题. 
     * mamba
         * 安装: `conda install -c conda-forge`
         * 创建空白环境: `mamba create -n <环境名>`
