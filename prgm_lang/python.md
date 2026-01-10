@@ -1002,6 +1002,42 @@
     * https://blog.csdn.net/qq_40674583/article/details/81940974
     * https://juejin.cn/post/6968320405341732871
 
+## `argparse`
+* 参数解析. 
+* 参考: https://docs.python.org/zh-cn/3/library/argparse.html
+```py
+    import argparse
+    parser = argparse.ArgumentParser(
+        prog='ProgramName',
+        description='What the program does',
+        epilog='Text at the bottom of help'
+    )
+
+    parser.add_help() # 添加`-h`选项
+
+    subparsers = parser.add_subparsers(help="commands")
+    checkout = subparsers.add_parser('checkout', aliases=['co']) # 添加子命令
+
+    checkout.add_argument('filename') # 位置参数
+    checkout.add_argument('-v', '--verbose', action='store_true') # `store_true`表示参数值为布尔值, 只要设置了参数则参数值为True
+    # 其他
+        # help: 设置帮助信息
+        # required: 布尔值, 为True表示必须项
+        # default: 默认值
+
+    checkout.set_defaults(func=hndl_checkout) # 注册处理函数
+
+    # 转换并获取参数值
+    args = parser.parse_args()
+
+    # 开始处理
+    args.func(args)
+```
+```py
+# 处理函数
+def hndl_checkout(args):
+    print(args.filename, args.count, args.verbose)
+```
 ## `os`
 ```py
     os.environ # 一个字典, 包含环境变量

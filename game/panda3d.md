@@ -1,4 +1,6 @@
-* 参考: https://docs.panda3d.org/1.10/python/introduction/index
+* 参考: 
+    * https://docs.panda3d.org/1.10/python/introduction/index
+    * https://discourse.panda3d.org/t/announcing-panda3d-studio/15242
 
 * 要点
     * ​​开发语言​​: Python（主）、C++
