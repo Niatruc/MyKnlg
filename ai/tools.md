@@ -113,6 +113,7 @@
 # MCP
 * 参考
     * https://github.com/modelcontextprotocol/python-sdk
+    * https://github.com/liaokongVFX/MCP-Chinese-Getting-Started-Guide
 
 # tensorflow
 * 注
