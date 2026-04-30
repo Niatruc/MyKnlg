@@ -27,6 +27,8 @@
     * lest: 以免
 * 动词
     * admire: 钦佩; 欣赏; 仰慕
+    * affiliates: 使附属; 使并入
+        * n. 附属机构
     * anticipate: 预料
     * ascertain: 查明
     * aspire: 渴望(成就); 有志(成为);
@@ -109,6 +111,7 @@
     * enforcement: 执行; 实施
     * essence: 本质
         * In essence: 从本质上讲
+    * extortion: 敲诈勒索
     * fiance: 未婚夫
         * fiancee: 未婚妻
     * fidelity: 忠诚
