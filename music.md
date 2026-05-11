@@ -1,3 +1,8 @@
+* 音源/音频网站/制造商
+    * samplescience.info
+    * freesound.org
+    * spitfire
+    * splice
 # 乐理
 
 |中文|英文|注释|

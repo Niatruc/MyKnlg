@@ -2,6 +2,7 @@
     * [潮语拼音教程](https://kahaani.github.io/gatian/index.html)
 * 字典词典
     * https://github.com/hokkien-writing/rime-teochew
+
 # 发音
 * 八声调
     * 阴平(平, 长): 诗 (普通话一声)
@@ -37,6 +38,22 @@
             * 伊侬i-nâng: 他们
         * 所有格
             * 我其 uá-kāi: 我的
+        * 指示
+            * 兹ze1: 这
+                * 兹阵zung5: 现在
+            * 者zia2个gai5: 这个
+            * 许hu2: 那
+                * 许撮coh4: 那些
+                * 许块go3: 那里
+
+        * 疑问
+            * 若rioh4多tsoi7: 多少
+            * 在zai1些se1: 怎么样
+            * 底di1: 
+                * 底个: 哪个
+                * 底块: 哪里
+                * 底𫢗: 谁
+            * 乜个: 什么
     * 名
         * 𡟓ai5: 母亲
         * 尫u1: 脚头尫, 膝盖
