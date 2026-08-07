@@ -4,7 +4,7 @@
         * `ls available`
     * `install <版本号>`
         * 下载的node放在环境变量`NVM_HOME`指定的目录中. 
-        * `install lts`
+        * `install lts`: 安装长期稳定版
     * `use <版本号>`
         * 会以环境变量`NVM_SYMLINK`创建一个链接, 指向该版本node的目录. 
     * `arch 64`: 设置位数
